@@ -1,0 +1,32 @@
+<h1>Movie Planner</h1>
+
+<ul>
+  {{#each movies}}
+  <li>
+    <p>
+      {{this.id}}. {{this.movie}}
+
+      <button data-movieid="{{this.id}}" class="delmovie">Delete Movie!</button>
+    </p>
+  </li>
+  {{/each}}
+</ul>
+
+<h2>Create a Movie to watch</h2>
+<form id="createmovie" class="button-size">
+  <textarea type="text" name="movie"></textarea>
+  <button type="submit">Save Movie!</button>
+</form>
+
+<h2>Update a Movie</h2>
+<form id="updatemovie" class="button-size">
+  <select name="id">
+		{{#each movies}}
+			<option value="{{this.id}}">{{this.movie}}</option>
+		{{/each}}
+	</select>
+  <textarea type="text" name="movie" placeholder="movie"></textarea>
+  <button type="submit">Update Movie!</button>
+</form>
+
+
