@@ -1,20 +1,32 @@
 {
-  "name": "update-delete",
+  "name": "project2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Current placeholder for Project2",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "start": "node app.js",
+    "watch": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "mysql2": "^1.3.6",
-    "sequelize": "^4.3.1"
-  }
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "handlebars": "^4.0.11",
+    "mysql2": "^1.5.3",
+    "path": "^0.12.7",
+    "sequelize": "^4.37.8",
+    "sequelize-cli": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnRThurlby/Project2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JohnRThurlby/Project2/issues"
+  },
+  "homepage": "https://github.com/JohnRThurlby/Project2#readme"
 }
