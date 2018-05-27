@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Wed45tues!@",
+    "password": "null",
     "database": "todolist",
     "host": "127.0.0.1",
     "port": 3306,
