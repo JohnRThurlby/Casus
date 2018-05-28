@@ -48,11 +48,11 @@ export default function (sequelize, DataTypes) {
       allowNull: false
     },
     eventstartdate: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       allowNull: false
     },
     eventenddate: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       allowNull: false
     },
     eventcapacity: {
@@ -72,12 +72,36 @@ export default function (sequelize, DataTypes) {
       allowNull: false
     }
   });
-  var Eventtags = sequelize.define("Eventstags", {
-    eventtag: {
+  var Userlikes = sequelize.define("Userlikes", {
+    likeid: {
+      type: DataTypes.INTEGER
+    },
+    liketitle: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    likedesc: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    likelocation: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    likestartdate: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    likeenddate: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    likesource: {
       type: DataTypes.STRING,
       allowNull: false
     }
   });
+    
   Usertags.associate = function (models) {
     // We're saying that a Usertag should belong to a User
     // A Usertag can't be created without a User due to the foreign key constraint
@@ -91,6 +115,15 @@ export default function (sequelize, DataTypes) {
     // We're saying that a Userevent should belong to a User
     // A Userevent can't be created without a User due to the foreign key constraint
     Userevents.belongsTo(models.Users, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+  Userlikes.associate = function (models) {
+    // We're saying that a Userevent should belong to a User
+    // A Userevent can't be created without a User due to the foreign key constraint
+    Userlikes.belongsTo(models.Users, {
       foreignKey: {
         allowNull: false
       }
@@ -110,6 +143,13 @@ export default function (sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
+  Users.associate = function (models) {
+    // Associating Users with Userevents
+    // When an User is deleted, also delete any associated Userevents
+    Users.hasMany(models.Userlikes, {
+      onDelete: "cascade"
+    });
+  };
   //return Users;
   var Categories = sequelize.define("Categories", {
     categoryid: {
@@ -123,15 +163,8 @@ export default function (sequelize, DataTypes) {
         'Charities (charities)', 'Sports & Active Life (sports-active-life)', 'Nightlife (nightlife)', 'Kids & Family (kids-family)', 'Other (other)']
     }
   });
-  var Tags = sequelize.define("Tags", {
-    tags: {
-      type: DataTypes.STRING,
-      values: ['Music (music)', 'Visual Arts (visual-arts)', 'Performing Arts (performing-arts)', 'Film (film)',
-        'Lectures & Books (lectures-books)', 'Fashion (fashion)', 'Food & Drink (food-and-drink)', 'Festivals & Fairs (festivals-fairs)',
-        'Charities (charities)', 'Sports & Active Life (sports-active-life)', 'Nightlife (nightlife)', 'Kids & Family (kids-family)', 'Other (other)']
-    }
-  });
-  return Users, Categories, Tags;
+  
+  return Users, Categories, Userevents, Userlikes, Usertags;
 }
 
 
