@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "Wed45tues!@",
-    "database": "todolist",
+    "password": "Noelrr01",
+    "database": "casus_db",
     "host": "127.0.0.1",
     "port": 3306,
     "dialect": "mysql"

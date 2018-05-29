@@ -106,7 +106,6 @@ module.exports = function(app) {
     // create takes an argument of an object describing the user tag we want to
     // insert into our table.
     db.Usertags.create({
-      tagid: req.body.tagid, 
       usertag: req.body.usertag
     }).then(function(dbUsertags) {
       // We have access to the new user tag as an argument inside of the callback function
@@ -119,7 +118,6 @@ module.exports = function(app) {
     // create takes an argument of an object describing the user event we want to
     // insert into our table. 
     db.Userevents.create({
-      eventid: req.body.eventid,
       eventtitle: req.body.eventtitle, 
       eventdesc: req.body.eventdesc,
       eventlocation: req.body.eventlocation, 
@@ -139,7 +137,6 @@ module.exports = function(app) {
   app.post("/api/userlikes", function(req, res) {
     // create takes an argument of an object describing the user like 
     db.Userlikes.create({
-      likeid: req.body.likeid,
       liketitle: req.body.liketitle,
       likedesc: req.body.likedesc,
       likelocation: req.body.likelocation, 
