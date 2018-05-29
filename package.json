@@ -1,8 +1,8 @@
 {
-  "name": "project2",
+  "name": "Casus",
   "version": "1.0.0",
-  "description": "Current placeholder for Project2",
-  "main": "server.js",
+  "description": "Casus",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
     "fs": "0.0.1-security",
     "handlebars": "^4.0.11",
     "mysql2": "^1.5.3",
