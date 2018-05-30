@@ -1,12 +1,11 @@
-/* Styling for the initial login */
-/* style the container */
 .firstLogin {
   position: relative;
   border-radius: 6px;
   background-color: #f2f2f2;
   padding: 25px 0 150px 0;
 } 
-
+/* Styling for the initial login */
+/* style the container */
 
 /* CSS for the social media login */
 * {box-sizing: border-box}
