@@ -3,7 +3,7 @@ require("dotenv").config()
 module.exports = {
   "development": {
     "username": "root",
-    "password": process.env.sql_Password,
+    "password": "Wed45tues!@",
     "database": "casus_db",
     "host": "127.0.0.1",
     "port": 3306,
