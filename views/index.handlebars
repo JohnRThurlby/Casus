@@ -56,6 +56,35 @@
 
 {{!-- Container for the Create Events form. --}}
 <div class="createEvent">
+  <h3>Add Your Own Event</h3>
+  <form>
+    Event Title:<br>
+  <input type="text" name="eventTitle" placeholder="Event Title" >
+  <br>
+
+  Event Date:<br>
+  <input type="text" name="eventDate" placeholder="Event Date">
+  <br>
+
+  Event Description:<br>
+  <textarea id="eventDescription"></textarea>
+  <br>
+
+  Event Type:<br>
+  <input type="radio" name="eventType" value="public" checked> Public<br>
+  <input type="radio" name="eventType" value="private"> Private<br>
+  <br>
+
+  Capacity:<br>
+  <input type="number" id="eventCapacity">
+  <br>
+
+  First name:<br>
+  <input type="text" name="firstname" value="Mickey">
+  <br>
+
+
+  </form>
 </div>
 
 {{!-- Footer Container --}}
