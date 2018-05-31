@@ -91,7 +91,7 @@ input[type=submit]:hover {
 }
 
 /* text inside the vertical line */
-.inner {
+.vl-innertext {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
