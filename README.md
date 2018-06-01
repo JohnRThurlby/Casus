@@ -6,11 +6,15 @@ Casus connects you to relevant events, streamlined and customized in a seamless 
 <h3>Group Members</h3>>
 
 Amani Alkowni:      HTML, CSS, Logo
+<br>
 Tristan Brown:      Images, OAUTH
+<br>
 Robert Olive:       Javascript, API's
+<br>
 Anibal Pacheco:     HTML, CSS
+<br>
 John Thurlby:       MySQL, Sequelize, MVC
-
+<br>
 <h3>Process</h3>
 
 <h4>Wireframe</h4>
@@ -23,7 +27,7 @@ John Thurlby:       MySQL, Sequelize, MVC
 
 <h3>Software used:</h3> 
 
-<img src="/images/nodejs_logo.png" width="256" height="256" title="NodeJS"><img src="/images/npm-logo.png" width="256" height="256" title="Node Package Manager">
-<img src="/images/express.png" width="256" height="256" title="Express"><img src="/images/mysql.png" width="256" height="256" title="MySQL">
-<img src="/images/handlebars.png" width="256" height="256" title="HandleBars"><img src="/images/twilio.png" width="256" height="256" title="Twilio">
-<img src="/images/heroku.png" width="256" height="256" title="Heroku">
+<img src="/public/images/nodejs_logo.png" width="256" height="256" title="NodeJS"><img src="/public/images/npm-logo.png" width="256" height="256" title="Node Package Manager">
+<img src="/public/images/express.png" width="256" height="256" title="Express"><img src="/public/images/mysql.png" width="256" height="256" title="MySQL">
+<img src="/public/images/handlebars.png" width="256" height="256" title="HandleBars"><img src="/public/images/twilio.png" width="256" height="256" title="Twilio">
+<img src="/public/images/heroku.png" width="256" height="256" title="Heroku">
