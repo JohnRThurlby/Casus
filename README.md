@@ -3,7 +3,7 @@
 Casus is a tool that helps people find personalized events and activities in their area. From sporting events to concerts and even private events,
 Casus connects you to relevant events, streamlined and customized in a seamless experience. Connect with Casus.
 
-<h3>Group Members</h3>>
+<h3>Group Members</h3>
 
 Amani Alkowni:      HTML, CSS, Logo
 <br>
@@ -19,7 +19,13 @@ John Thurlby:       MySQL, Sequelize, MVC
 
 <h4>Wireframe</h4>
 
-
+<img src="/public/images/wireframe1.png" width="256" height="256" title="Landing Page">
+<img src="/public/images/wireframe2.png" width="256" height="256" title="Login Page">
+<img src="/public/images/wireframe3.png" width="256" height="256" title="Registration Page">
+<img src="/public/images/wireframe4.png" width="256" height="256" title="Event Feed Page">
+<img src="/public/images/wireframe5.png" width="256" height="256" title="Event Feed Page 2">
+<img src="/public/images/wireframe6.png" width="256" height="256" title="Event Feed Page 3">
+<img src="/public/images/wireframe7.png" width="256" height="256" title="Add Event Page">
 
 <h4>MySQl Schema</h4>
 
