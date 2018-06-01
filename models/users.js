@@ -15,6 +15,9 @@ module.exports =  function (sequelize, DataTypes) {
     zipcode: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    twitterid: {
+      type: DataTypes.STRING
     }
   })
     
