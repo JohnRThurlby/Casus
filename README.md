@@ -19,12 +19,12 @@ John Thurlby:       MySQL, Sequelize, MVC
 
 <h4>Wireframe</h4>
 
-<img src="/public/images/wireframe1.png" width="256" height="256" title="Landing Page">
-<img src="/public/images/wireframe2.png" width="256" height="256" title="Login Page">
-<img src="/public/images/wireframe3.png" width="256" height="256" title="Registration Page">
-<img src="/public/images/wireframe4.png" width="256" height="256" title="Event Feed Page">
-<img src="/public/images/wireframe5.png" width="256" height="256" title="Event Feed Page 2">
-<img src="/public/images/wireframe6.png" width="256" height="256" title="Event Feed Page 3">
+<img src="/public/images/wireframe1.png" width="256" height="256" title="Landing Page"><img src="/public/images/wireframe2.png" width="256" height="256" title="Login Page">
+<br>
+<img src="/public/images/wireframe3.png" width="256" height="256" title="Registration Page"><img src="/public/images/wireframe4.png" width="256" height="256" title="Event Feed Page">
+<br>
+<img src="/public/images/wireframe5.png" width="256" height="256" title="Event Feed Page 2"><img src="/public/images/wireframe6.png" width="256" height="256" title="Event Feed Page 3">
+<br>
 <img src="/public/images/wireframe7.png" width="256" height="256" title="Add Event Page">
 
 <h4>MySQl Schema</h4>
