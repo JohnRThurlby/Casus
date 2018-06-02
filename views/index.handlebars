@@ -3,7 +3,7 @@
 
 <input type="radio" id="toggle--signup" name="toggle" class="ghost" />
 
-<img class="logo framed" src="../public/images/logo.jpg" alt="CASUS LOGO" />
+<img class="logo framed" src="/images/image2vector.svg" alt="CASUS LOGO" />
 
 <form class="form form--login framed">
     <input type="email" placeholder="Email" class="input input--top" />
@@ -53,15 +53,16 @@
 
 {{!-- Social media login page. "action = '/action_page.php' removed." --}}
 <div class="mainContainer">
-<div class="container">
-  <form>
-    <div class="row">
-      <h2 style="text-align:center">Login with Social Media or Manually</h2>
-      <div class="vl">
-        <span class="vl-innertext">or</span>
-      </div>
 
-      <div class="col">
+<!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" id="socialBtn" href="#modal1">Login with Social Media!</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Social Media Login</h4>
+      <p>
+        <div class="col">
         <a href="#" class="fb btn">
           <i class="fa fa-facebook fa-fw"></i> Login with Facebook
         </a>
@@ -72,43 +73,15 @@
           <i class="fa fa-google fa-fw"></i> Login with Google+
         </a>
       </div>
-
-      <div class="col">
-        <div class="hide-md-lg">
-          <p>Or sign in manually:</p>
-        </div>
-        <input type="text" name="username" placeholder="Username" required size="10" id="userName">
-        <input type="password" placeholder="Password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-        <input type="submit" value="Login">
-      </div>
-
+      </p>
     </div>
-  </form>
-
-  {{!-- Message about Password verification --}}
-<div id="message">
-  <h3>Password must contain the following:</h3>
-  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-  <p id="number" class="invalid">A <b>number</b></p>
-  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-</div>
-
-
-{{!-- Bottom part of the Social Media Login page --}}
-<div class="row">
-  <div class="bottom-container col">
-    <div class="row">
-    <div class="col">
-        <a href="#" style="color:white" class="btn" id="pswForgot">Forgot password?</a>
-      </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Forgot Password?</a>
     </div>
   </div>
-</div>
-</div>
 
 
-{{!-- Container for the events feed. --}}
+
 
 
 {{!-- Container for the Create Events form. --}}
