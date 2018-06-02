@@ -341,7 +341,7 @@ html, body {
 
 /* Styles for the specific images. */
 .first-image {
-	background-image: url('../images/CasusConcert.jpeg');	
+	background-image: url('../images/CasusArcade.jpeg');	
 	z-index: -3;
 	opacity: 0;
 }
@@ -353,7 +353,7 @@ html, body {
 }
 
 .third-image {
-	background-image: url('../images/CasusMatch.jpeg');
+	background-image: url('../images/landingpage.jpg');
 	z-index: -1;
 	opacity: 0;
 }

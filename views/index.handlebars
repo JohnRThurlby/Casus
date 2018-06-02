@@ -3,7 +3,7 @@
 
 <input type="radio" id="toggle--signup" name="toggle" class="ghost" />
 
-<img class="logo framed" src="../public/images/logo.jpg" alt="CASUS LOGO" />
+<img class="logo framed" src="/images/image2vector.svg" alt="CASUS LOGO" />
 
 <form class="form form--login framed">
     <input type="email" placeholder="Email" class="input input--top" />
@@ -90,10 +90,9 @@
     </div>  
   </div>
 
-
-
 <!-- Modal Trigger -->
   <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Create Event!</a>
+
 
 {{!-- Container for the Create Events form. --}}
 <div id="modal2" class="createEvent modal bottom-sheet">
@@ -139,11 +138,16 @@
 <footer>
 </footer>
 
+<div id = "feed">
+        {{> feeds/feeds}}
+</div>
+
 
 {{!-- Linked to pswdval.js for Password verification. --}}
 
 {{!-- <script src="/js/pswdval.js"></script> Linked to landing.js for toogle scripting. --}}
 <script src="/js/landing.js"></script>
+<script src = "/js/view.js"></script>
 
 {{!-- <script src="/js/pswdval.js"></script> --}}
 <!-- Compiled and minified JavaScript -->
