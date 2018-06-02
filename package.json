@@ -1,34 +1,27 @@
 {
   "name": "Casus",
   "version": "1.0.0",
-  "description": "Casus",
+  "description": "<h2>Overview</h2>",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "watch": "nodemon app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnRThurlby/Casus.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnRThurlby/Casus/issues"
+  },
+  "homepage": "https://github.com/JohnRThurlby/Casus#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "fs": "0.0.1-security",
     "handlebars": "^4.0.11",
     "mysql2": "^1.5.3",
-    "path": "^0.12.7",
-    "sequelize": "^4.37.10",
-    "sequelize-cli": "^4.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JohnRThurlby/Project2.git"
-  },
-  "bugs": {
-    "url": "https://github.com/JohnRThurlby/Project2/issues"
-  },
-  "homepage": "https://github.com/JohnRThurlby/Project2#readme"
+    "sequelize": "^4.37.10"
+  }
 }
