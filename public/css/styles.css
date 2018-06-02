@@ -369,3 +369,19 @@ html, body {
 .third-image.show {
 	opacity: 1;
 }
+
+/* Styles for event container */
+
+.eventContainer {
+  width: 100%;
+}
+
+.image {
+  width: 50%;
+  height: auto;
+}
+
+.googleMap {
+  width: 25%;
+  height: auto;
+}
