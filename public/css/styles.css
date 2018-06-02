@@ -118,8 +118,9 @@ input[type=submit]:hover {
 /* Buttons for the bottom container. */
 #pswForgot {
   width: 100%;
-  align-self: auto;
-  right: 67%;
+  background-color: forestgreen;
+  text-align: center;
+  color: white;
 }
 /* Style the submit button */
 input[type=submit] {
@@ -188,7 +189,7 @@ input[type=submit] {
 }
 
 .createEvent{
-  display: none;
+  
 }
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {
