@@ -59,63 +59,76 @@
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
-    <div class="modal-content">
+    <div class="modal-content center-align">
       <h4>Social Media Login</h4>
       <p>
-        <div class="col">
-        <a href="#" class="fb btn">
-          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-        </a>
-        <a href="#" class="twitter btn">
-          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-        </a>
-        <a href="#" class="google btn">
-          <i class="fa fa-google fa-fw"></i> Login with Google+
-        </a>
-      </div>
+        <div class="row center-align">
+          <div class="col s3"></div>
+          <div class="col s6">
+            <a href="#" class="fb btn">
+              <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+            </a>
+            <a href="#" class="twitter btn">
+              <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+            </a>
+            <a href="#" class="google btn">
+              <i class="fa fa-google fa-fw"></i> Login with Google+
+            </a>
+          </div>
+          <div class="col s3"></div>
+        </div>  
       </p>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Forgot Password?</a>
-    </div>
+    <div class="row center-align">
+      <div class="col s3"></div> 
+      <div class="col s6">
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="pswForgot">Forgot Password?</a>
+        </div>  
+      </div> 
+      <div class="col s3"></div> 
+    </div>  
   </div>
 
 
 
-
+<!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Create Event!</a>
 
 {{!-- Container for the Create Events form. --}}
-<div class="createEvent">
-  <h3>Add Your Own Event</h3>
-  <form>
-    Event Title:<br>
-  <input type="text" name="eventTitle" placeholder="Event Title" >
-  <br>
+<div id="modal2" class="createEvent modal bottom-sheet">
+  <div class="modal-content">
+    <h3>Add Your Own Event</h3>
+    <form>
+      Event Title:<br>
+    <input type="text" name="eventTitle" placeholder="Event Title" >
+    <br>
 
-  Event Date:<br>
-  <input type="date" name="eventDate">
-  <input type="submit">
-  <br>
+    Event Date:<br>
+    <input type="date" name="eventDate">
+    <input type="submit">
+    <br>
 
-  Event Description:<br>
-  <textarea id="eventDescription"></textarea>
-  <br>
+    Event Description:<br>
+    <textarea id="eventDescription"></textarea>
+    <br>
 
-  Event Type:<br>
-  <input type="radio" name="eventType" value="public" checked> Public<br>
-  <input type="radio" name="eventType" value="private"> Private<br>
-  <br>
+    Event Type:<br>
+    <input type="radio" name="eventType" value="public"> Public<br>
+    <input type="radio" name="eventType" value="private"> Private<br>
+    <br>
 
-  Capacity:<br>
-  <input type="number" min="0" id="eventCapacity">
-  <br>
+    Capacity:<br>
+    <input type="number" min="0" id="eventCapacity">
+    <br>
 
-  First name:<br>
-  <input type="text" name="firstname" value="Mickey">
-  <br>
+    First name:<br>
+    <input type="text" name="firstname" value="Mickey">
+    <br>
 
 
-  </form>
+    </form>
+  </div> 
 </div>
 
 
@@ -135,4 +148,19 @@
 {{!-- <script src="/js/pswdval.js"></script> --}}
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script>
+  (function ($) {
+    $(function () {
 
+        //initialize all modals           
+        $('.modal').modal();
+
+        //now you can open modal from code
+        $('#modal1').modal('open');
+
+        //or by click on trigger
+        $('.trigger-modal').modal();
+
+    }); // end of document ready
+})(jQuery); // end of jQuery name space
+</script>
