@@ -14,13 +14,10 @@ module.exports = function(app) {
 
   // Use Handlebars to render the main index.html page with the movies in it.
 app.get("/", function(req, res) {
-    //connection.query("SELECT * FROM movies;", function(err, data) {
-    //  if (err) {
-    //    return res.status(500).end();
-    //  }
-  
-      res.render("index")
-    //})
+    res.render("index")
   })
 
+  app.get("/signin", function(req, res) {
+    res.render("signin")
+  })
 }
