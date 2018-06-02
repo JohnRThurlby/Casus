@@ -1,17 +1,8 @@
-.firstLogin {
-  position: relative;
-  border-radius: 6px;
-  background-color: #f2f2f2;
-  padding: 25px 0 150px 0;
-} 
-/* Styling for the initial login */
-/* style the container */
-
-/* CSS for the social media login */
 * {box-sizing: border-box}
 
 /* style the container */
 .container {
+  display: none;
   position: relative;
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -113,11 +104,12 @@ input[type=submit]:hover {
 
 /* bottom container */
 .bottom-container {
+  display: none;
   text-align: center;
   background-color: #666;
   border-radius: 0px 0px 4px 4px;
   position: relative;
-  width: 80%;
+  width: 100%;
   align-self: center;
 }
 
@@ -191,6 +183,9 @@ input[type=submit] {
   }
 }
 
+.createEvent{
+  display: none;
+}
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {
   .col {

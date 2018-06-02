@@ -52,6 +52,7 @@
 </header>
 
 {{!-- Social media login page. "action = '/action_page.php' removed." --}}
+<div class="mainContainer">
 <div class="container">
   <form>
     <div class="row">
@@ -83,8 +84,8 @@
 
     </div>
   </form>
-</div>
-{{!-- Message about Password verification --}}
+
+  {{!-- Message about Password verification --}}
 <div id="message">
   <h3>Password must contain the following:</h3>
   <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -95,12 +96,15 @@
 
 
 {{!-- Bottom part of the Social Media Login page --}}
-<div class="bottom-container">
-  <div class="row">
-   <div class="col">
-      <a href="#" style="color:white" class="btn" id="pswForgot">Forgot password?</a>
+<div class="row">
+  <div class="bottom-container col">
+    <div class="row">
+    <div class="col">
+        <a href="#" style="color:white" class="btn" id="pswForgot">Forgot password?</a>
+      </div>
     </div>
   </div>
+</div>
 </div>
 
 
@@ -142,7 +146,7 @@
 </div>
 
 
-
+</div>
 
 
 {{!-- Footer Container --}}
