@@ -15,9 +15,7 @@ module.exports = function(app) {
   // Use Handlebars to render the main index.html page with the movies in it.
 app.get("/", function(req, res) {
     res.render("index")
+    // res.render("feeds")
   })
 
-  app.get("/signin", function(req, res) {
-    res.render("signin")
-  })
 }

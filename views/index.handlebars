@@ -83,7 +83,6 @@
 
 
 
-
 {{!-- Container for the Create Events form. --}}
 <div class="createEvent">
   <h3>Add Your Own Event</h3>
@@ -126,11 +125,16 @@
 <footer>
 </footer>
 
+<div id = "feed">
+        {{> feeds/feeds}}
+</div>
+
 
 {{!-- Linked to pswdval.js for Password verification. --}}
 
 {{!-- <script src="/js/pswdval.js"></script> Linked to landing.js for toogle scripting. --}}
 <script src="/js/landing.js"></script>
+<script src = "/js/view.js"></script>
 
 {{!-- <script src="/js/pswdval.js"></script> --}}
 <!-- Compiled and minified JavaScript -->
