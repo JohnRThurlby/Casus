@@ -1,4 +1,34 @@
 $(document).ready(function() {
+
+  var feed = document.getElementsByClassName("feedContainer"),
+      
+  function feedPopulate () {
+    let query = document.getElementById("search").value
+    
+    var oArgs = {
+ 
+       app_key: "kZVX6GMpxCX83vh9",
+ 
+      //  q: query,
+ 
+       page_size: 10,
+ 
+       sort_order: "popularity",
+
+       location: "orlando"
+ 
+    };
+ 
+    EVDB.API.call("/events/search", oArgs, function(oData) {
+ 
+
+     console.log(oData)
+       // Note: this relies on the custom toString() methods below
+      feed.append(oData)
+     });
+  }
+  feedPopulate();
+
   // Getting a reference to the input field where user adds a new todo
   var $newItemInput = $("input.new-item");
   // Our new todos will go inside the todoContainer
