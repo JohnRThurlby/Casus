@@ -1,17 +1,17 @@
-* {box-sizing: border-box}
+/* * {box-sizing: border-box} */
 
 /* style the container */
-.container {
+/* .container {
   position: relative;
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px 0 30px 0;
-} 
+}  */
 
 /* style inputs and link buttons */
-input,
-.btn {
-  align-self: center;
+/* input,
+.btn { */
+  /* align-self: center;
   width: 90%;
   padding: 12px;
   border: none;
@@ -21,68 +21,68 @@ input,
   display: inline-block;
   font-size: 17px;
   line-height: 20px;
-  text-decoration: none; /* remove underline from anchors */
-}
+  text-decoration: none; remove underline from anchors */
+/* } */
 
-input:hover,
-.btn:hover {
-  opacity: 1;
-}
+/* input:hover,
+.btn:hover { */
+  /* opacity: 1; */
+/* } */
 
 /* add appropriate colors to fb, twitter and google buttons */
-.fb {
+/* .fb {
   background-color: #3B5998;
   color: white;
-}
+} */
 
-.twitter {
+/* .twitter {
   background-color: #55ACEE;
   color: white;
-}
+} */
 
-.google {
+/* .google {
   background-color: #dd4b39;
   color: white;
-}
+} */
 
 /* style the submit button */
-input[type=submit] {
+/* input[type=submit] {
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
-}
+} */
 
-input[type=submit]:hover {
+/* input[type=submit]:hover {
   background-color: #45a049;
-}
+} */
 
 /* Two-column layout */
-.col {
+/* .col {
   float: left;
   width: 50%;
   margin: auto;
   padding: 0 50px;
   margin-top: 6px;
-}
+} */
 
 /* Clear floats after the columns */
-.row:after {
+/* .row:after {
   content: "";
   display: table;
   clear: both;
-}
+} */
 
 /* vertical line */
-.vl {
+/* .vl {
   position: absolute;
   left: 47.5%;
   transform: translate(-50%);
   border: 2px solid #ddd;
   height: 175px;
-}
+} */
 
 /* text inside the vertical line */
-.vl-innertext {
+/* .vl-innertext {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -90,86 +90,105 @@ input[type=submit]:hover {
   border: 1px solid #ccc;
   border-radius: 50%;
   padding: 8px 10px;
-}
+} */
 
 /* The form for the username and psw. */
-#username {
+/* #username {
   width: 90%;
-}
+} */
 /* hide some text on medium and large screens */
-.hide-md-lg {
+/* .hide-md-lg {
   display: none;
-}
+} */
 
 /* bottom container */
-.bottom-container {
+/* .bottom-container {
   text-align: center;
   border-radius: 0px 0px 4px 4px;
   position: relative;
   width: 100%;
   align-self: center;
-}
+} */
 
 /* Social media modal button */
-#socialBtn {
+/* #socialBtn {
   position: relative;
   width: 50%;
-}
+} */
 /* Buttons for the bottom container. */
-#pswForgot {
+/* #pswForgot {
   width: 100%;
   background-color: forestgreen;
   text-align: center;
   color: white;
-}
+} */
 /* Style the submit button */
-input[type=submit] {
+/* input[type=submit] {
   background-color: #4CAF50;
   color: white;
-}
+} */
 
 /* Style the container for inputs */
-.container {
+/* .container {
   background-color: #f1f1f1;
   padding: 20px;
-}
+} */
 
 /* The message box is shown when the user clicks on the password field */
-#message {
+/* #message {
   display:none;
   background: #f1f1f1;
   color: #000;
   position: relative;
   padding: 20px;
   margin-top: 10px;
-}
+} */
 
-#message p {
+/* #message p {
   padding: 10px 35px;
   font-size: 18px;
-}
+} */
 
 /* Add a green text color and a checkmark when the requirements are right */
-.valid {
+/* .valid {
   color: green;
-}
+} */
 
-.valid:before {
+/* .valid:before {
   position: relative;
   left: -35px;
   content: "✔";
-}
+} */
 
 /* Add a red text color and an "x" when the requirements are wrong */
-.invalid {
+/* .invalid {
   color: red;
-}
+} */
 
-.invalid:before {
+/* .invalid:before {
   position: relative;
   left: -35px;
   content: "✖";
+} */
+
+/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 650px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+  /* hide the vertical line */
+  /* .vl {
+    display: none;
+  } */
+  /* show the hidden text on small screens */
+  /* .hide-md-lg {
+    display: block;
+    text-align: center;
+  } */
 }
+
+
 
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {
@@ -187,23 +206,55 @@ input[type=submit] {
     text-align: center;
   }
 }
+/* CSS for Toggle Images 
+/* Basic background image styling. */
 
+.background-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 650px) {
-  .col {
-    width: 100%;
-    margin-top: 0;
-  }
-  /* hide the vertical line */
-  .vl {
-    display: none;
-  }
-  /* show the hidden text on small screens */
-  .hide-md-lg {
-    display: block;
-    text-align: center;
-  }
+/* Styles for the alternating / transition effect. */
+
+.toggle-image {
+   position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+   height: 800px;
+  transition: opacity 1s ease-in-out;
+} 
+
+/* Styles for the specific images. */
+.first-image {
+  background-image: url('../images/CasusArcade.jpeg');	
+  z-index: -3;
+  opacity: 0;
+}
+
+.second-image {
+  background-image: url('../images/CasusFood.jpeg');
+  z-index: -2;
+  opacity: 0;
+}
+
+.third-image {
+  background-image: url('../images/landingpage.jpg');
+  z-index: -1;
+  opacity: 0;
+}
+
+.first-image.show {
+  opacity: 1;
+}
+
+.second-image.show {
+  opacity: 1;
+}
+
+.third-image.show {
+  opacity: 1;
 }
 /*main page-amani*/
 
@@ -266,6 +317,7 @@ html, body {
     margin-bottom: 1rem;
   }
 
+
 .text {
   color: #fff;
   text-shadow: 0 1px 1px rgba(0,0,0,0.8);
@@ -319,54 +371,6 @@ html, body {
 
 @media (height:300px){.legal,.photo-cred{display:none}}
 
-/*CSS for Toggle Images 
-/* Basic background image styling. */
-.background-image {
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-/* Styles for the alternating / transition effect. */
-.toggle-image {
- 	position: absolute;
-	width: 100%;
-	top: 0;
-	left: 0;
- 	height: 800px;
-	transition: opacity 1s ease-in-out;
-}
-
-/* Styles for the specific images. */
-.first-image {
-	background-image: url('../images/CasusArcade.jpeg');	
-	z-index: -3;
-	opacity: 0;
-}
-
-.second-image {
-	background-image: url('../images/CasusFood.jpeg');
-	z-index: -2;
-	opacity: 0;
-}
-
-.third-image {
-	background-image: url('../images/landingpage.jpg');
-	z-index: -1;
-	opacity: 0;
-}
-
-.first-image.show {
-	opacity: 1;
-}
-
-.second-image.show {
-	opacity: 1;
-}
-
-.third-image.show {
-	opacity: 1;
-}
 
 /* Styles for event container */
 
@@ -384,9 +388,37 @@ html, body {
   height: auto;
 }
 
+
 .filler {
   z-index: 1000;
   height: 900px;
   width: 100%;
   float: left;
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+
 }
