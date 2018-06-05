@@ -188,9 +188,8 @@
   } */
 }
 
-/* .createEvent{
-  
-} */
+
+
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {
   .col {
@@ -389,6 +388,13 @@ html, body {
   height: auto;
 }
 
+
+.filler {
+  z-index: 1000;
+  height: 900px;
+  width: 100%;
+  float: left;
+
 /* Tooltip container */
 .tooltip {
   position: relative;
@@ -414,4 +420,5 @@ html, body {
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+
 }

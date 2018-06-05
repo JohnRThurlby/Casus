@@ -14,14 +14,42 @@ const db = require("../models"),
       
       
 
+var express = require("express");
+
+var router = express.Router();
+
+router.get("/", function(req, res) {
+
+    res.render("index", events[0]);
+  
+});
+
 // Routes
 // =============================================================
 module.exports = function(app) {
 
+  var events = [{
+    title: "Placeholder event",
+    image: "imgsrc",
+    description: "this is the event description",
+    start: "August 20, 2018",
+    end: "August 21, 2018"
+}]
+
   // GET route for getting a specific users
   app.get("/", function(req, res) {
     // findOne returns the entry from a table for a specific user
-    res.render("index")
+
+    db.Users.findOne({
+      where: {
+        id: req.params.userid
+      }
+    }).then(function(dbUsers) {
+      // We have access to the users as an argument inside of the callback function
+      res.json(dbUsers)
+      // res.render("index", events[0])
+    })
+
   })
   // GET route for getting a specific users
   app.get("/api/users/", function(req, res) {
