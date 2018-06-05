@@ -35,6 +35,10 @@ const exphbs = require("express-handlebars")
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
 app.set("view engine", "handlebars")
 
+// var feed = document.getElementById("feed").innerHTML
+// var theTemplate =  Handlebars.compile(feed)
+// var compiledData = theTemplate(events[0]);
+
 
 // exphbs.registerPartial(__dirname + '/views/partials');
 // Routes
