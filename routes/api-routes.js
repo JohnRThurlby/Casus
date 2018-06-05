@@ -6,7 +6,13 @@
 // =============================================================
 
 // Requiring our models
-const db = require("../models")
+const db = require("../models"),
+      postcode = require('postcode-validator'),
+      validator = require("email-validator"),
+      ValidatePassword = require('validate-password'),
+      validPass = new ValidatePassword()
+      
+      
 
 // Routes
 // =============================================================
@@ -15,26 +21,31 @@ module.exports = function(app) {
   // GET route for getting a specific users
   app.get("/", function(req, res) {
     // findOne returns the entry from a table for a specific user
-    db.Users.findOne({
-      where: {
-        id: req.params.userid
-      }
-    }).then(function(dbUsers) {
-      // We have access to the users as an argument inside of the callback function
-      res.json(dbUsers)
-    })
+    res.render("index")
   })
   // GET route for getting a specific users
-  app.get("/api/users/:userid", function(req, res) {
+  app.get("/api/users/", function(req, res) {
     // findOne returns the entry from a table for a specific user
     db.Users.findOne({
       where: {
-        id: req.params.userid
+        email: req.query.Email,
+        password: req.query.Password
       }
     }).then(function(dbUsers) {
+      console.log(dbUsers)
+      if (dbUsers != null) {
       // We have access to the users as an argument inside of the callback function
-      res.json(dbUsers)
+         res.render("partials/feeds/feeds")
+      }
+      else {
+        error = 'Invalid userid/password combination'
+        var hbsObject = {error}
+        console.log(hbsObject)
+        res.render('index', hbsObject)
+      }
+      
     })
+    
   })
 
   // GET route for getting a specific users events
@@ -102,15 +113,50 @@ module.exports = function(app) {
   app.post("/api/users", function(req, res) {
     // create takes an argument of an object describing the user we want to
     // insert into our table. 
-    db.Users.create({
-      userid: req.body.userid,        
-      password: req.body.password,          
-      email: req.body.email,  
-      zipcode: req.body.zipcode
-    }).then(function(dbUsers) {
-      // We have access to the new user as an argument inside of the callback function
-      res.json(dbUsers)
-    })
+   
+    var error = " "
+    var userValid = true
+
+    var passwordData = validPass.checkPassword(req.body.Password);
+    if (!passwordData.isValid) {
+      console.log(passwordData.isValid) // false
+      console.log(passwordData.validationMessage)
+      error = passwordData.validationMessage
+      userValid = false
+    }
+
+    if (!validator.validate(req.body.Email)) {
+      console.log('invalid email')
+      error = 'Invalid email, please enter a correcty formatted email'
+      userValid = false
+       
+    } 
+    
+    // added so user must enter a valid zip, call to zippopotam
+    if (!postcode.validate(req.body.Zipcode, 'US')) {
+          console.log('invalid zip')
+          error = 'Zip Code is invalid'
+          userValid = false 
+    }
+    
+    if (userValid) {
+      var n = req.body.Email.indexOf("@")   // determine position of @ sign
+      var userid = req.body.Email.slice(0, n);  //split email to use for userid
+      db.Users.create({
+        userid: userid,        
+        password: req.body.Password,          
+        email: req.body.Email,  
+        zipcode: req.body.Zipcode
+      }).then(function(dbUsers) {
+        // We have access to the new user as an argument inside of the callback function
+        res.render("index")
+      })
+    }
+    else {
+      var hbsObject = {error}
+      console.log(hbsObject)
+      res.render('index', hbsObject)
+    }  
   })
 
   // POST route for saving a new user tag
@@ -161,3 +207,10 @@ module.exports = function(app) {
     })
   })
 }
+
+
+    
+          
+
+
+
