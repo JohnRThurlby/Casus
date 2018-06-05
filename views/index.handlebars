@@ -1,33 +1,45 @@
 {{!-- Landing Page --}}
+
+
 <input type="radio" checked id="toggle--login" name="toggle" class="ghost" />
 
 <input type="radio" id="toggle--signup" name="toggle" class="ghost" />
 
-<img class="logo framed" src="/images/image2vector.svg" alt="CASUS LOGO" />
+{{!-- <img class="logo framed" src="/images/image2vector.svg" alt="CASUS LOGO" /> --}}
 
-<form class="form form--login framed">
-    <input type="email" placeholder="Email" class="input input--top" />
-    <input type="password" placeholder="Password" class="input" />
+<form class="form form--login framed" action="/api/users" method="GET">
+    <input type="email" placeholder="Email" id="Email" name="Email" class="input input--top" required />
+    <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
     <input type="submit" value="Log in" class="input input--submit" />
 
     <label for="toggle--signup" class="text text--small text--centered">New?
         <b>Sign up</b>
     </label>
+    <label class="text text--small text--centered">
+       <b>{{error}}</b>
+   </label>
 </form>
 
-<form class="form form--signup framed">
-    <h2 class="text text--centered text--omega">Casus connects you to relevant events
-        <b>streamlined and customized </b> in a seamless experience.</br>Connect with Casus</h2>
+<form class="form form--signup framed" action="/api/users" method="POST">
+   <h2 class="text text--centered text--omega">Casus connects you to relevant events
+       <b>streamlined and customized </b> in a seamless experience.</br>Connect with Casus</h2>
 
-    <input type="email" placeholder="Email" class="input input--top" />
-    <input type="password" placeholder="Password" class="input" />
-    <input type="text" placeholder="Username" class="input" />
-    <input type="submit" value="Sign up" class="input input--submit" />
+   <input type="email" placeholder="Email" id="Email" name="Email" class="input input--top" required />
+   <div class="tooltip">
+     <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
+     <span class="tooltiptext">Password must be minimum 8 chars,and must contain one lowercase, one uppercase, one numeric, and one special character</span>
+   </div>
+   <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
+   <input type="submit" value="Sign up" class="input input--submit" />
 
-    <label for="toggle--login" class="text text--small text--centered">Not new?
-        <b>Log in</b>
-    </label>
+   <label for="toggle--login" class="text text--small text--centered">Not new?
+       <b>Log in</b>
+   </label>
+   <label class="text text--small text--centered">
+       <b>{{error}}</b>
+   </label>
 </form>
+
 
 <div class="legal">
     <a class="text text--small text--border-right" href="javascript:;">Terms</a>
@@ -141,7 +153,6 @@
 {{!-- Footer Container --}}
 <footer>
 </footer>
-
 
 {{!-- Linked to pswdval.js for Password verification. --}}
 
