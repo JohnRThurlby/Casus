@@ -15,7 +15,6 @@ const db = require("../models"),
 
 var express = require("express");
 
-var router = express.Router();
 
 var events = [{
   title: "Placeholder event",
@@ -57,8 +56,8 @@ module.exports = function(app) {
     // findOne returns the entry from a table for a specific user
     db.Users.findOne({
       where: {
-        email: req.query.Email,
-        password: req.query.Password
+        email: req.query.Email2,
+        password: req.query.Password2
       }
     }).then(function(dbUsers) {
       console.log(dbUsers)
