@@ -1,6 +1,5 @@
 // *********************************************************************************
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
 
 // Dependencies
 // =============================================================
@@ -12,26 +11,29 @@ var express = require("express");
 
 var router = express.Router();
 
-router.get("/", function(req, res) {
-
-    res.render("index", events[0]);
-  
-});
-
+var events = [{
+  title: "Placeholder event",
+  image: "imgsrc",
+  description: "this is the event description",
+  start: "August 20, 2018",
+  end: "August 21, 2018"
+},
+{
+  title: "placeholder2",
+  image: "image2",
+  description: "description2",
+  start: "start2",
+  end: "end2"
+}]
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-  var events = [{
-    title: "Placeholder event",
-    image: "imgsrc",
-    description: "this is the event description",
-    start: "August 20, 2018",
-    end: "August 21, 2018"
-}]
+
 
   // GET route for getting a specific users
   app.get("/", function(req, res) {
+    console.log(events[0].title)
     // findOne returns the entry from a table for a specific user
     db.Users.findOne({
       where: {
@@ -39,8 +41,7 @@ module.exports = function(app) {
       }
     }).then(function(dbUsers) {
       // We have access to the users as an argument inside of the callback function
-      res.json(dbUsers)
-      // res.render("index", events[0])
+      res.render("index", {events: events})
     })
   })
   // GET route for getting a specific users

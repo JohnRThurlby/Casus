@@ -13,9 +13,9 @@ module.exports = function(app) {
   // Each of the below routes just handles the HTML page that the user gets sent to.
 
   // Use Handlebars to render the main index.html page with the movies in it.
-app.get("/", function(req, res) {
-    res.render("index")
-    // res.render("feeds")
-  })
+// app.get("/", function(req, res) {
+//     res.render("index")
+//     // res.render("feeds")
+//   })
 
 }

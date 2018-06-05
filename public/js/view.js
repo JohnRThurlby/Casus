@@ -26,12 +26,19 @@ $(document).ready(function() {
             description: "this is the event description",
             start: "August 20, 2018",
             end: "August 21, 2018"
+        },
+        {
+            title: "placeholder2",
+            image: "image2",
+            description: "description2",
+            start: "start2",
+            end: "end2"
         }]
 
 
     console.log(oData)
     events.push(oData.events.event)
-    console.log(events[0])
+    console.log(events)
 
             // var router = express.Router()
             var source   = document.getElementById("entry-template").innerHTML;
