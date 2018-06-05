@@ -1,4 +1,5 @@
-{box-sizing: border-box} *
+
+*{box-sizing: border-box}
 
 /* style the container */ 
 .container {
@@ -21,7 +22,7 @@ align-self: center;
   display: inline-block;
   font-size: 17px;
   line-height: 20px;
-  text-decoration: none; remove underline from anchors
+  text-decoration: none; 
  } 
 
 input:hover,
