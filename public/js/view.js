@@ -44,7 +44,7 @@ $(document).ready(function() {
             var source   = document.getElementById("entry-template").innerHTML;
             var template = Handlebars.compile(source);
     
-            var html    = template(events[0]);
+            var html    = template(events);
 
             console.log(html)
     });
