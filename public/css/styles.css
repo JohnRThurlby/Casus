@@ -412,6 +412,7 @@ html, body {
   height: 900px;
   width: 100%;
   float: left;
+}
 
 /* Tooltip container */
 .tooltip {
