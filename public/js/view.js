@@ -37,7 +37,9 @@ $(document).ready(function() {
 
 
     console.log(oData)
-    events.push(oData.events.event)
+    oData.events.event.forEach(element => {
+        events.push(element)
+    });
     console.log(events)
 
             // var router = express.Router()
