@@ -38,19 +38,18 @@ module.exports = function(app) {
 
   // GET route for getting a specific users
   app.get("/", function(req, res) {
-    console.log(events[0].title)
     // findOne returns the entry from a table for a specific user
-
-    db.Users.findOne({
-      where: {
-        id: req.params.userid
-      }
-    }).then(function(dbUsers) {
+    console.log(events)
+    // db.Users.findOne({
+    //   where: {
+    //     id: req.params.userid
+    //   }
+    }).then(function(item) {
       // We have access to the users as an argument inside of the callback function
       res.render("index", {events: events})
     })
 
-  })
+  
   // GET route for getting a specific users
   app.get("/api/users/", function(req, res) {
     // findOne returns the entry from a table for a specific user
