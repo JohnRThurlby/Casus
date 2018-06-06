@@ -4,7 +4,7 @@ module.exports = {
   "development": {
     "username": "root",
 
-    "password": "Wed45tues!@",
+    "password": "root",
 
     "database": "casus_db",
     "host": "127.0.0.1",
