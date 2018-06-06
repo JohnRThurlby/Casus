@@ -15,6 +15,8 @@ const db = require("../models"),
 
 var express = require("express");
 
+
+// this is an object containing the array of events. Note that the array is actually the events property of the object. For now it lives here, but it may have to move in order to append more events
 var objectEv = {
   events:
   [{
@@ -49,6 +51,8 @@ module.exports = function(app) {
       }
     }).then(function(dbUsers) {
       // We have access to the users as an argument inside of the callback function
+
+      // this renders our handlebar template with the event object.
       res.render("index", objectEv)
     })
   })
