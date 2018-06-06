@@ -30,22 +30,6 @@ input:hover,
    opacity: 1; 
  } 
 
-/* add appropriate colors to fb, twitter and google buttons */
-.fb {
-  background-color: #3B5998;
-  color: white;
-} 
-
- .twitter {
-  background-color: #55ACEE;
-  color: white;
-} 
-
-.google {
-  background-color: #dd4b39;
-  color: white;
-}
-
 /* style the submit button */
 input[type=submit] {
   background-color: #4CAF50;
@@ -57,72 +41,20 @@ input[type=submit]:hover {
   background-color: #45a049;
 } 
 
-/* Two-column layout */
-.col {
-  float: left;
-  width: 50%;
-  margin: auto;
-  padding: 0 50px;
-  margin-top: 6px;
-}
+/* Anibal deleted the social media login modal. 6/5/18 */
 
-/* Clear floats after the columns */
- .row:after {
-  content: "";
-  display: table;
-  clear: both;
-} 
+ 
 
-/* vertical line */
- .vl {
-  position: absolute;
-  left: 47.5%;
-  transform: translate(-50%);
-  border: 2px solid #ddd;
-  height: 175px;
-} 
 
-/* text inside the vertical line */
-.vl-innertext {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  padding: 8px 10px;
-} 
 
-/* The form for the username and psw. */
- #username {
-  width: 90%;
-} 
 /* hide some text on medium and large screens */
 .hide-md-lg {
   display: none;
 } 
 
-/* bottom container */
- .bottom-container {
-  text-align: center;
-  border-radius: 0px 0px 4px 4px;
-  position: relative;
-  width: 100%;
-  align-self: center;
-} 
 
-/* Social media modal button */
- #socialBtn {
-  position: relative;
-  width: 50%;
-} 
-/* Buttons for the bottom container. */
- #pswForgot {
-  width: 100%;
-  background-color: forestgreen;
-  text-align: center;
-  color: white;
-}
+
+
 /* Style the submit button */
 /* input[type=submit] {
   background-color: #4CAF50;
