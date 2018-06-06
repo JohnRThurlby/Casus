@@ -1,17 +1,3 @@
-{{!-- Landing Page --}}
-
-
-<input type="radio" checked id="toggle--login" name="toggle" class="ghost" />
-
-<input type="radio" id="toggle--signup" name="toggle" class="ghost" />
-
-
-<img class="logo framed" src="" alt="CASUS LOGO" />
-
-
-<form class="form form--login framed" action="/api/users" method="GET">
-    <input type="email" placeholder="Email" id="Email2" name="Email2" class="input input--top" required />
-    <input type="password" placeholder="Password" id="Password2" name="Password2" class="input" required />
     <input type="submit" value="Log in" class="input input--submit" />
 
     <label for="toggle--signup" class="text text--small text--centered">New?
@@ -78,9 +64,9 @@
 
 
 <div id = "feed">
-  {{!-- {{#each events}} --}}
+  {{#each events}}
         {{> feeds/feeds}}
-  {{!-- {{/each}} --}}
+  {{/each}}
 </div>
 
 {{!-- Container for the Create Events form. --}}
@@ -131,7 +117,7 @@
 
 {{!-- <script src="/js/pswdval.js"></script> Linked to landing.js for toogle scripting. --}}
 <script src="/js/landing.js"></script>
-<script src = "/js/view.js"></script>
+
 
 {{!-- <script src="/js/pswdval.js"></script> --}}
 <!-- Compiled and minified JavaScript -->

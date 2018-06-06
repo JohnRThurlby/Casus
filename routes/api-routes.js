@@ -15,8 +15,9 @@ const db = require("../models"),
 
 var express = require("express");
 
-
-var events = [{
+var objectEv = {
+  events:
+  [{
   title: "Placeholder event",
   image: "imgsrc",
   description: "this is the event description",
@@ -30,9 +31,12 @@ var events = [{
   start: "start2",
   end: "end2"
 }]
+}
+
 // Routes
 // =============================================================
 module.exports = function(app) {
+
 
 
 
@@ -45,7 +49,7 @@ module.exports = function(app) {
       }
     }).then(function(dbUsers) {
       // We have access to the users as an argument inside of the callback function
-      res.render("index", {events: events})
+      res.render("index", objectEv)
     })
   })
   
@@ -233,10 +237,3 @@ module.exports = function(app) {
     })
   })
 }
-
-
-    
-          
-
-
-
