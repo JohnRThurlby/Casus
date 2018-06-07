@@ -33,5 +33,6 @@
     "unirest": "^0.5.1",
     "validate-password": "^1.0.4",
     "xml-js": "^1.6.4"
+
   }
 }
