@@ -15,6 +15,9 @@ const db = require("../models"),
 
 var express = require("express");
 
+var unirest = require("unirest")
+
+var convert = require('xml-js');
 
 // this is an object containing the array of events. Note that the array is actually the events property of the object. For now it lives here, but it may have to move in order to append more events
 var objectEv = {
@@ -35,6 +38,8 @@ var objectEv = {
 }]
 }
 
+
+//   calling the function --- eventually this will be removed and be called when the user logs in
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -45,16 +50,10 @@ module.exports = function(app) {
   // GET route for getting a specific users
   app.get("/", function(req, res) {
     // findOne returns the entry from a table for a specific user
-    db.Users.findOne({
-      where: {
-        id: req.params.userid
-      }
-    }).then(function(dbUsers) {
       // We have access to the users as an argument inside of the callback function
-
+    // getEvents()
       // this renders our handlebar template with the event object.
       res.render("index", objectEv)
-    })
   })
   
   // GET route for getting a specific users
@@ -69,6 +68,7 @@ module.exports = function(app) {
       console.log(dbUsers)
       if (dbUsers != null) {
       // We have access to the users as an argument inside of the callback function
+      // getEvents()
          res.render("partials/feeds/feeds")
       }
       else {
@@ -183,7 +183,12 @@ module.exports = function(app) {
         zipcode: req.body.Zipcode
       }).then(function(dbUsers) {
         // We have access to the new user as an argument inside of the callback function
-        res.render("index")
+
+
+        // getEvents();
+
+
+        res.render("index", objectEv)
       })
     }
     else {
