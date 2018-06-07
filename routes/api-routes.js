@@ -49,9 +49,13 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
   parseString(result.body, function (err, results) {
     let eventful = results.search.events[0].event;
     objectEv.events = objectEv.event.concat(eventful);
-    console.log(objectEv.events[0]);
+    // console.log(objectEv.events.length);
+    for (var i = 0; i < objectEv.events.length; i++) {
+      console.log(objectEv.events[i].image[0].url);
+    }
   });
 });
+
 
 // Routes
 // =============================================================
@@ -62,14 +66,6 @@ module.exports = function(app) {
 
   // GET route for getting a specific users
   app.get("/", function(req, res) {
-    // findOne returns the entry from a table for a specific user
-    // var eventful = sessionStorage.getItem("events")
-    // if (eventful != null) {
-    //   console.log(eventful);
-    // }
-    // else {
-    //   console.log(eventful);
-    // }
     
     db.Users.findOne({
       where: {
