@@ -15,6 +15,10 @@ const db = require("../models"),
 
 var express = require("express");
 
+var unirest = require("unirest");
+
+var xml2js = require('xml2js');
+
 var objectEv = {
   events:
   [{
@@ -33,6 +37,20 @@ var objectEv = {
 }]
 }
 
+// These code snippets use an open-source library. http://unirest.io/nodejs
+unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&keywords=books")
+.header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
+.header("Accept", "text/plain")
+.end(function (result) {
+  // console.log(result.status, result.headers, result.body);
+  var parseString = require('xml2js').parseString;
+  parseString(result.body, function (err, results) {
+    let eventful = results.search.events[0].event;
+    console.log(eventful[0].title)
+});
+
+});
+
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -43,6 +61,14 @@ module.exports = function(app) {
   // GET route for getting a specific users
   app.get("/", function(req, res) {
     // findOne returns the entry from a table for a specific user
+    // var eventful = sessionStorage.getItem("events")
+    // if (eventful != null) {
+    //   console.log(eventful);
+    // }
+    // else {
+    //   console.log(eventful);
+    // }
+    
     db.Users.findOne({
       where: {
         id: req.params.userid
