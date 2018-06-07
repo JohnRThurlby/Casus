@@ -76,8 +76,9 @@ module.exports = function(app) {
       }
     }).then(function(dbUsers) {
       // We have access to the users as an argument inside of the callback function
+    // getEvents()
+      // this renders our handlebar template with the event object.
       res.render("index", objectEv)
-    })
   })
   
   // GET route for getting a specific users
@@ -92,6 +93,7 @@ module.exports = function(app) {
       console.log(dbUsers)
       if (dbUsers != null) {
       // We have access to the users as an argument inside of the callback function
+      // getEvents()
          res.render("partials/feeds/feeds")
       }
       else {
@@ -206,7 +208,12 @@ module.exports = function(app) {
         zipcode: req.body.Zipcode
       }).then(function(dbUsers) {
         // We have access to the new user as an argument inside of the callback function
-        res.render("index")
+
+
+        // getEvents();
+
+
+        res.render("index", objectEv)
       })
     }
     else {
