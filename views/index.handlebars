@@ -64,6 +64,17 @@
 {{!-- Header Container --}}
 <header>
 
+ <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">CASUS</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li> <a class="waves-effect waves-light btn modal-trigger red" href="#modal2">Create Event!</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
 </header>
 
 {{!-- Social media login page. "action = '/action_page.php' removed." --}}
@@ -71,8 +82,7 @@
 
 {{!-- Anibal deleted the social media login modal. 6/5/18 --}}
 
-<!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Create Event!</a>
+
 
 
 <div id = "feed">
@@ -92,7 +102,6 @@
 
     Event Date:<br>
     <input type="date" name="eventDate">
-    <input type="submit">
     <br>
 
     Event Description:<br>
@@ -100,20 +109,39 @@
     <br>
 
     Event Type:<br>
-    <input type="radio" name="eventType" value="public"> Public<br>
-    <input type="radio" name="eventType" value="private"> Private<br>
+    <input type="radio" name="eventType" value="public" /> Public<br>
+    <input type="radio" name="eventType" value="private" /> Private<br>
     <br>
 
     Capacity:<br>
     <input type="number" min="0" id="eventCapacity">
     <br>
 
-    First name:<br>
-    <input type="text" name="firstname" value="Mickey">
+    Categories:<br>
+    <div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="Music (music)">Music</option>
+      <option value="Visual Arts (visual-arts)">Visual Arts</option>
+      <option value="Performing Arts (performing-arts)">Option 3</option>
+      <option value="Film (film)">Film</option>
+      <option value="Lectures & Books (lectures-books)">Lectures and Books</option>
+      <option value="Fashion (fashion)">Fashion</option>
+      <option value="Food & Drink (food-and-drink)">Food and Drink</option>
+      <option value="Festivals & Fairs (festivals-fairs)">Festivals and Fairs</option>
+      <option value="Charities (charities)">Charities</option>
+      <option value="Sports & Active Life (sports-active-life)">Sports and Active Life</option>
+      <option value="Nightlife (nightlife)">Nightlife</option>
+      <option value="Kids & Family (kids-family)">Kids and Family</option>
+      <option value="Other (other)">Other</option>
+    </select>
+  </div>
     <br>
 
 
     </form>
+     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+  </button>
   </div> 
 </div>
 
@@ -149,4 +177,10 @@
 
     }); // end of document ready
 })(jQuery); // end of jQuery name space
+
+//Get the select form ready. 
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+     
 </script>
