@@ -9,7 +9,8 @@ const db = require("../models"),
       postcode = require('postcode-validator'),
       validator = require("email-validator"),
       ValidatePassword = require('validate-password'),
-      validPass = new ValidatePassword()
+      validPass = new ValidatePassword(),
+      unirest = require('unirest')
       
       
 
@@ -64,7 +65,7 @@ module.exports = function(app) {
 
 
 
-  // GET route for getting a specific users
+  // GET route for landing page 
   app.get("/", function(req, res) {
     
     db.Users.findOne({
@@ -76,6 +77,7 @@ module.exports = function(app) {
     // getEvents()
       // this renders our handlebar template with the event object.
       res.render("index", objectEv)
+
   })
   
   // GET route for getting a specific users
@@ -89,6 +91,12 @@ module.exports = function(app) {
     }).then(function(dbUsers) {
       console.log(dbUsers)
       if (dbUsers != null) {
+        unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&keywords=events%2C+orlando")
+        .header("X-Mashape-Key", "R0VKbqu0ffmshY41Oe1MS86gZyqQp1dLAMFjsn5f48sac9Uosu")
+        .header("Accept", "text/plain")
+        .end(function (result) {
+          console.log(result.status, result.headers, result.body);
+        });
       // We have access to the users as an argument inside of the callback function
       // getEvents()
          res.render("partials/feeds/feeds")
