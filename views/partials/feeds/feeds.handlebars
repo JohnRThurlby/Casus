@@ -1,5 +1,3 @@
-
-{{!-- <script>console.log({{events}})</script> --}}
     {{!-- This is a placeholder for what the dynamically generated events look like. use as template for styling. --}}
     <div class = "row">
         <div class = "col s12">
@@ -16,17 +14,17 @@
             <div class = "row">
                 <div class = "col s6">
                     <div class = "image">
-                        <img src = {{image.[0].url}}>
+                        <img src = {{#if image.[0].medium}}{{image.[0].medium.[0].url}}{{/if}}>
                     </div>
                 </div>
 
 
                 <div class = "col s3">
                     <div class = "eventDesc">
-                        {{description}}
+                        {{!-- {{description}} --}}
                     </div>
                     <div class = "location">
-                        Orlando, FL
+                        {{city_name.[0]}}, {{region_name.[0]}}
                     </div>
                     <div class = "startTime">
                         {{start_time}}
