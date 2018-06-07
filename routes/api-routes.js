@@ -20,20 +20,20 @@ var unirest = require("unirest");
 var xml2js = require('xml2js');
 
 var objectEv = {
-  events:
+  event:
   [{
   title: "Placeholder event",
   image: "imgsrc",
   description: "this is the event description",
-  start: "August 20, 2018",
-  end: "August 21, 2018"
+  start_time: "August 20, 2018",
+  stop_time: "August 21, 2018"
 },
 {
   title: "placeholder2",
   image: "image2",
   description: "description2",
-  start: "start2",
-  end: "end2"
+  start_time: "start2",
+  stop_time: "end2"
 }]
 }
 
@@ -46,8 +46,9 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
   var parseString = require('xml2js').parseString;
   parseString(result.body, function (err, results) {
     let eventful = results.search.events[0].event;
-    console.log(eventful[0].title)
-});
+    objectEv.events = objectEv.event.concat(eventful);
+    console.log(objectEv.events[2]);
+  });
 
 });
 
