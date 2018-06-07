@@ -16,23 +16,42 @@ const db = require("../models"),
 
 var express = require("express");
 
+var unirest = require("unirest");
+
+var xml2js = require('xml2js');
+
 var objectEv = {
-  events:
+  event:
   [{
   title: "Placeholder event",
   image: "imgsrc",
   description: "this is the event description",
-  start: "August 20, 2018",
-  end: "August 21, 2018"
+  start_time: "August 20, 2018",
+  stop_time: "August 21, 2018"
 },
 {
   title: "placeholder2",
   image: "image2",
   description: "description2",
-  start: "start2",
-  end: "end2"
+  start_time: "start2",
+  stop_time: "end2"
 }]
 }
+
+// These code snippets use an open-source library. http://unirest.io/nodejs
+unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&keywords=books")
+.header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
+.header("Accept", "text/plain")
+.end(function (result) {
+  // console.log(result.status, result.headers, result.body);
+  var parseString = require('xml2js').parseString;
+  parseString(result.body, function (err, results) {
+    let eventful = results.search.events[0].event;
+    objectEv.events = objectEv.event.concat(eventful);
+    console.log(objectEv.events[2]);
+  });
+
+});
 
 // Routes
 // =============================================================
@@ -44,7 +63,24 @@ module.exports = function(app) {
   // GET route for landing page 
   app.get("/", function(req, res) {
     // findOne returns the entry from a table for a specific user
-      res.render("index")
+    // var eventful = sessionStorage.getItem("events")
+    // if (eventful != null) {
+    //   console.log(eventful);
+    // }
+    // else {
+    //   console.log(eventful);
+    // }
+    
+    db.Users.findOne({
+      where: {
+        id: req.params.userid
+      }
+    }).then(function(dbUsers) {
+      // We have access to the users as an argument inside of the callback function
+    // getEvents()
+      // this renders our handlebar template with the event object.
+      res.render("index", objectEv)
+
   })
   
   // GET route for getting a specific users
@@ -65,6 +101,7 @@ module.exports = function(app) {
           console.log(result.status, result.headers, result.body);
         });
       // We have access to the users as an argument inside of the callback function
+      // getEvents()
          res.render("partials/feeds/feeds")
       }
       else {
@@ -179,7 +216,12 @@ module.exports = function(app) {
         zipcode: req.body.Zipcode
       }).then(function(dbUsers) {
         // We have access to the new user as an argument inside of the callback function
-        res.render("index")
+
+
+        // getEvents();
+
+
+        res.render("index", objectEv)
       })
     }
     else {

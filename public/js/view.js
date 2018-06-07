@@ -21,9 +21,8 @@ $(document).ready(function() {
   
   
       console.log(oData)
-          objectEv.events.push(oData)
-              var source   = document.getElementById("entry-template").innerHTML;
-              var template = Handlebars.compile(source);
+            //   var source   = document.getElementById("entry-template").innerHTML;
+            //   var template = Handlebars.compile(source);
       });
   }
   getEvents();
