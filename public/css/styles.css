@@ -167,6 +167,8 @@ input[type=submit]:hover {
   opacity: 0;
 }
 
+
+
 .second-image {
   background-image: url('../images/CasusFood.jpeg');
   z-index: -2;

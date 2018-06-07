@@ -9,7 +9,8 @@ const db = require("../models"),
       postcode = require('postcode-validator'),
       validator = require("email-validator"),
       ValidatePassword = require('validate-password'),
-      validPass = new ValidatePassword()
+      validPass = new ValidatePassword(),
+      unirest = require('unirest')
       
       
 
@@ -40,17 +41,10 @@ module.exports = function(app) {
 
 
 
-  // GET route for getting a specific users
+  // GET route for landing page 
   app.get("/", function(req, res) {
     // findOne returns the entry from a table for a specific user
-    db.Users.findOne({
-      where: {
-        id: req.params.userid
-      }
-    }).then(function(dbUsers) {
-      // We have access to the users as an argument inside of the callback function
-      res.render("index", objectEv)
-    })
+      res.render("index")
   })
   
   // GET route for getting a specific users
@@ -64,6 +58,12 @@ module.exports = function(app) {
     }).then(function(dbUsers) {
       console.log(dbUsers)
       if (dbUsers != null) {
+        unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&keywords=events%2C+orlando")
+        .header("X-Mashape-Key", "R0VKbqu0ffmshY41Oe1MS86gZyqQp1dLAMFjsn5f48sac9Uosu")
+        .header("Accept", "text/plain")
+        .end(function (result) {
+          console.log(result.status, result.headers, result.body);
+        });
       // We have access to the users as an argument inside of the callback function
          res.render("partials/feeds/feeds")
       }

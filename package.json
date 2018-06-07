@@ -30,6 +30,7 @@
     "passport-auth0": "^0.6.1",
     "postcode-validator": "^1.2.0",
     "sequelize": "^4.37.10",
+    "unirest": "^0.5.1",
     "validate-password": "^1.0.4"
   }
 }
