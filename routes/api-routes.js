@@ -9,12 +9,9 @@ const db = require("../models"),
       postcode = require('postcode-validator'),
       validator = require("email-validator"),
       ValidatePassword = require('validate-password'),
-      validPass = new ValidatePassword(),
-      unirest = require('unirest')
-      
-      
+      validPass = new ValidatePassword()
 
-var express = require("express");
+      // var express = require("express");
 
 var unirest = require("unirest");
 
@@ -22,24 +19,26 @@ var xml2js = require('xml2js');
 
 var objectEv = {
   event:
-  [{
-  title: "Placeholder event",
-  image: "imgsrc",
-  description: "this is the event description",
-  start_time: "August 20, 2018",
-  stop_time: "August 21, 2018"
-},
-{
-  title: "placeholder2",
-  image: "image2",
-  description: "description2",
-  start_time: "start2",
-  stop_time: "end2"
-}]
-}
+  [
+    // {
+//   title: "Placeholder event",
+//   image: "imgsrc",
+//   description: "this is the event description",
+//   start_time: "August 20, 2018",
+//   stop_time: "August 21, 2018"
+// },
+// {
+//   title: "placeholder2",
+//   image: "image2",
+//   description: "description2",
+//   start_time: "start2",
+//   stop_time: "end2"
+// }
+]
+};
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
-unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&keywords=books")
+unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=orlando")
 .header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
 .header("Accept", "text/plain")
 .end(function (result) {
@@ -48,10 +47,20 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
   parseString(result.body, function (err, results) {
     let eventful = results.search.events[0].event;
     objectEv.events = objectEv.event.concat(eventful);
-    console.log(objectEv.events[2]);
+    // console.log(objectEv.events.length);
+    for (var i = 0; i < objectEv.events.length; i++) {
+      var mediumImg = objectEv.events[i].image[0].medium;
+      if (mediumImg!=undefined) {
+        console.log (mediumImg[0]);
+      }
+      else {
+        console.log(mediumImg)
+      }
+      // console.log(objectEv.events[i].image[0].medium);
+    }
   });
-
 });
+
 
 // Routes
 // =============================================================
@@ -62,14 +71,6 @@ module.exports = function(app) {
 
   // GET route for landing page 
   app.get("/", function(req, res) {
-    // findOne returns the entry from a table for a specific user
-    // var eventful = sessionStorage.getItem("events")
-    // if (eventful != null) {
-    //   console.log(eventful);
-    // }
-    // else {
-    //   console.log(eventful);
-    // }
     
     db.Users.findOne({
       where: {
@@ -278,4 +279,4 @@ module.exports = function(app) {
       res.json(dbUserlikes)
     })
   })
-}
+})}
