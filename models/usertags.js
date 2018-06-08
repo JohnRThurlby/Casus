@@ -1,5 +1,9 @@
 module.exports =  function (sequelize, DataTypes) {
   var Usertags = sequelize.define("Usertags", {
+    userid: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     usertag: {
       type: DataTypes.STRING,
       allowNull: false

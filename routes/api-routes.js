@@ -71,11 +71,7 @@ module.exports = function(app) {
 
   // GET route for landing page 
   app.get("/", function(req, res) {
-    
-    db.Users.findAll({
-      
-    }).then(function(dbUsers) {
-      
+            
       res.render("index")
 
   })
@@ -84,7 +80,7 @@ module.exports = function(app) {
           
       res.render("index")
 
-    })
+  })
   
   // GET route for getting a specific users
   app.get("/api/users/", function(req, res) {
@@ -103,6 +99,7 @@ module.exports = function(app) {
          res.render("index", objectEv)
       }
       else {
+        
         error = 'Invalid userid/password combination'
         var hbsObject = {error}
         console.log(hbsObject)
@@ -207,22 +204,21 @@ module.exports = function(app) {
     if (userValid) {
       var n = req.body.Email.indexOf("@")   // determine position of @ sign
       var userid = req.body.Email.slice(0, n);  //split email to use for userid
+
       db.Users.create({
         userid: userid,        
         password: req.body.Password,          
         email: req.body.Email,  
-        zipcode: req.body.Zipcode
+        zipcode: req.body.Zipcode,
+        twitterid: req.body.Twitter
       }).then(function(dbUsers) {
         // We have access to the new user as an argument inside of the callback function
-
-
-        // getEvents();
-
-
+        
         res.render("index", objectEv)
       })
     }
     else {
+      
       var hbsObject = {error}
       console.log(hbsObject)
       res.render('index', hbsObject)
@@ -257,9 +253,16 @@ module.exports = function(app) {
       eventprivate: true,
       eventcategory: req.body.eventCategory,
       eventUserid: 'johnrthurlby'      
-    }).then(function(dbUserevents) {
+    }).then(function(dbUserevents) {      
       // We have access to the new user event as an argument inside of the callback function
-      res.json(dbUserevents)
+     if (req.body.eventTag != ""){
+      db.Usertags.create({
+        userid: 'johnrthurlby',
+        usertag: req.body.eventTag
+      }).then(function(dbUsertags) {})}
+        // We have access to the new user tag as an argument inside of the callback function
+             
+      res.render("index", objectEv)
     })
   })
 
@@ -278,4 +281,4 @@ module.exports = function(app) {
       res.json(dbUserlikes)
     })
   })
-})}
+}
