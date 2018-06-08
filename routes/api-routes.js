@@ -79,6 +79,12 @@ module.exports = function(app) {
       res.render("index")
 
   })
+
+  app.get("/api/logout", function(req, res) {
+          
+      res.render("index")
+
+    })
   
   // GET route for getting a specific users
   app.get("/api/users/", function(req, res) {

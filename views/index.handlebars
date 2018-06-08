@@ -70,8 +70,10 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">CASUS</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li> <a class="waves-effect waves-light btn modal-trigger red" href="#modal2">Create Event!</a></li>
-        <li><a href="collapsible.html">Log Out</a></li>
+        <form action="/api/logout" method="get">
+           <li><a class="waves-effect waves-light btn modal-trigger red" href="#modal2">Create Event!</a></li>
+           <li><button action="" method="GET" class="waves-effect waves-light red" type="submit" >Log Out</button></li>
+        </form>
       </ul>
     </div>
   </nav>
