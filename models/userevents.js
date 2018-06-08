@@ -33,21 +33,26 @@ module.exports =  function (sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false
     },
-    eventcategoryid: {
-      type: DataTypes.INTEGER,
+    eventcategory: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    eventUserid: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   })
     
-  Userevents.associate = function (models) {
+  //Userevents.associate = function (models) {
     // We're saying that a Userevent should belong to a User
     // A Userevent can't be created without a User due to the foreign key constraint
-    Userevents.belongsTo(models.Users, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
-  }
+  //  Userevents.belongsTo(models.Users, {
+  //    foreignKey: {
+  //      foreignKey: 'userevents_ibfk_1',
+  //      targetKey: 'userid'
+  //    }
+  //  })
+  //}
 
   return Userevents
 }

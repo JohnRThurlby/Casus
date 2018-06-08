@@ -245,16 +245,18 @@ module.exports = function(app) {
   app.post("/api/userevents", function(req, res) {
     // create takes an argument of an object describing the user event we want to
     // insert into our table. 
+    console.log(req.body)
     db.Userevents.create({
-      eventtitle: req.body.eventtitle, 
-      eventdesc: req.body.eventdesc,
-      eventlocation: req.body.eventlocation, 
-      eventstartdate: req.body.eventstartdate, 
-      eventenddate: req.body.eventenddate,
-      eventcapacity: req.body.eventcapacity, 
-      eventpublic: req.body.eventpublic,
-      eventprivate: req.body.eventprivate,
-      eventcategoryid: req.body.eventcategoryid
+      eventtitle: req.body.eventTitle, 
+      eventdesc: req.body.eventDescription,
+      eventlocation: req.body.eventLocation, 
+      eventstartdate: req.body.eventStartdate, 
+      eventenddate: req.body.eventEnddate,
+      eventcapacity: req.body.eventCapacity, 
+      eventpublic: false,
+      eventprivate: true,
+      eventcategory: req.body.eventCategory,
+      eventUserid: 'johnrthurlby'      
     }).then(function(dbUserevents) {
       // We have access to the new user event as an argument inside of the callback function
       res.json(dbUserevents)

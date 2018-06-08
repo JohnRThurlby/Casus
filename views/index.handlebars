@@ -70,9 +70,9 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">CASUS</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <form action="/api/logout" method="get">
+        <form>
            <li><a class="waves-effect waves-light btn modal-trigger red" href="#modal2">Create Event!</a></li>
-           <li><button action="" method="GET" class="waves-effect waves-light red" type="submit" >Log Out</button></li>
+           <li><button action="/api/logout" method="GET" class="waves-effect waves-light red" type="submit" >Log Out</button></li>
         </form>
       </ul>
     </div>
@@ -102,54 +102,61 @@
 <div id="modal2" class="createEvent modal bottom-sheet">
   <div class="modal-content">
     <h4>Add Your Own Event</h4>
-    <form>
+    <form action="/api/userevents" method="POST">
       <h5>Event Title:</h5><br>
     <input type="text" name="eventTitle" placeholder="Event Title" >
     <br>
 
-    <h5>Event Date:</h5><br>
-    <input type="text" name="eventDate" class="datepicker">
-    <br>
-
     <h5>Event Description:</h5><br>
-    <textarea id="eventDescription"></textarea>
+    <textarea id="eventDescription" name="eventDescription"></textarea>
+    <br>
+    
+    <h5>Event Location:</h5><br>
+    <textarea id="eventLocation" name="eventLocation"></textarea>
     <br>
 
+    <h5>Event Start Date:</h5><br>
+    <input type="datetime-local" name="eventStartdate" required>
+    <br>
+
+    <h5>Event End Date:</h5><br>
+    <input type="datetime-local" name="eventEnddate" required>
+    <br>
+    
     <h5>Event Type:</h5><br>
     <input type="radio" name="eventType" value="public" /> Public<br>
     <input type="radio" name="eventType" value="private" /> Private<br>
     <br>
 
     <h5>Capacity:</h5><br>
-    <input type="number" min="0" id="eventCapacity">
+    <input type="number" min="0" name="eventCapacity" id="eventCapacity">
     <br>
 
     <h5>Categories:</h5><br>
     <div class="input-field col s12">
-    <select>
+    <select required name="eventCategory">
       <option value="" disabled selected>Choose your option</option>
       <option value="Music">Music</option>
       <option value="Visual Arts">Visual Arts</option>
-      <option value="Performing Arts">Option 3</option>
+      <option value="Performing Arts">Performing Arts</option>
       <option value="Film">Film</option>
       <option value="Lectures & Books">Lectures and Books</option>
       <option value="Fashion">Fashion</option>
       <option value="Food & Drink">Food and Drink</option>
       <option value="Festivals and Fairs">Festivals and Fairs</option>
-      <option value="Charities (charities)">Charities</option>
+      <option value="Charities">Charities</option>
       <option value="Sports and Active Life">Sports and Active Life</option>
-      <option value="Nightlife (nightlife)">Nightlife</option>
+      <option value="Nightlife">Nightlife</option>
       <option value="Kids and Family">Kids and Family</option>
       <option value="Other">Other</option>
     </select>
-  </div>
+    </div>
     <br>
     {{!-- Tags for the event --}}
-    <input placeholder="Tags" id="tags" type="text" class="validate">
-
+    <input placeholder="Tags" id="tags" type="text" name="eventTag" class="validate"></input>
+    <button class="btn waves-effect waves-light" type="submit" >Add Event</button>
     </form>
-     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-  </button>
+    
   </div> 
 </div>
 
