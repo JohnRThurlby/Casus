@@ -16,7 +16,7 @@
             <div class = "row">
                 <div class = "col s6">
                     <div class = "image">
-                        {{image}}
+                        <img src ={{#if image.[0].medium}}{{image.[0].medium.[0].url}}{{/if}}>
                     </div>
                 </div>
 
