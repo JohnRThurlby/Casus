@@ -54,17 +54,6 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
     objectEv.events = objectEv.event.concat(eventful);
   });
 });
-
-Handlebars.registerHelper('image', function() {
-  var image = Handlebars.escapeExpression(this.emotion),
-      name = Handlebars.escapeExpression(this.name);
-
-  return new Handlebars.SafeString(
-    "<button>I agree. I " + emotion + " " + name + "</button>"
-  );
-});
-
-
 // Routes
 // =============================================================
 module.exports = function(app) {
