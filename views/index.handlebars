@@ -31,9 +31,12 @@
  
    <div class="tooltip">
      <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
-     <span class="tooltiptext">Password must be minimum 8 chars,and must contain one lowercase, one uppercase, one numeric, and one special character</span>
+     <div class="tooltipped" data-position="left" data-delay="50" data-tooltip="Password must be minimum 8 chars,and must contain one lowercase, one uppercase, one numeric, and one special character">
+	  </div>
    </div>
+   
    <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
+   <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
 
    <input type="submit" value="Sign up" class="input input--submit" />
 
@@ -124,8 +127,14 @@
     <br>
     
     <h5>Event Type:</h5><br>
-    <input type="radio" name="eventType" value="public" /> Public<br>
-    <input type="radio" name="eventType" value="private" /> Private<br>
+     <label>
+        <input type="checkbox" name="eventPublic" />
+        <span>Public</span>
+      </label>
+      <label>
+        <input type="checkbox" name="eventPrivate" />
+        <span>Private</span>
+      </label>
     <br>
 
     <h5>Capacity:</h5><br>

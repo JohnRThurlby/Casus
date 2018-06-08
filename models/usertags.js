@@ -6,15 +6,15 @@ module.exports =  function (sequelize, DataTypes) {
     }
   })
   
-  Usertags.associate = function (models) {
+  //Usertags.associate = function (models) {
     // We're saying that a Usertag should belong to a User
     // A Usertag can't be created without a User due to the foreign key constraint
-    Usertags.belongsTo(models.Users, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
-  }
+    //Usertags.belongsTo(models.Users, {
+    //  foreignKey: {
+    //    allowNull: false
+    //  }
+    //})
+  //}
    
   return Usertags
 }
