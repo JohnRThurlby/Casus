@@ -110,15 +110,15 @@ input[type=submit]:hover {
     width: 100%;
     margin-top: 0;
   }
-  /* hide the vertical line */
-  /* .vl {
+  hide the vertical line */
+  .vl {
     display: none;
   } */
-  /* show the hidden text on small screens */
-  /* .hide-md-lg {
+  /*show the hidden text on small screens */
+  .hide-md-lg {
     display: block;
     text-align: center;
-  } */
+  }
 }
 
 
@@ -215,11 +215,6 @@ html, body {
   margin-left: -7.5rem!important;
 }
 
-.logo {
-  margin-top: -9em;
-  cursor: default;
-}
-
 .form {
   margin-top: -4.5em!important;
   transition: 1s ease-in-out!important;
@@ -302,11 +297,9 @@ html, body {
   color: grey;
   opacity: 1; 
 }
-
 :-ms-input-placeholder { 
   color: grey;
 }
-
 ::-ms-input-placeholder { 
   color: grey;
 } */
@@ -380,3 +373,22 @@ div {
   font-size: 0.8em;
   font-weight: 700;
 }
+
+/* .logoFixed {
+  width:100%; 
+  max-width:100%; 
+} */
+
+/* #logo-container {
+  height: 100px;
+  vertical-align: middle;
+} */
+.brand-logo {
+  position: relative; 
+  top: -40px;
+}
+.brand-logo>img {
+  width: 150px;
+  height: 150px;
+  }
+
