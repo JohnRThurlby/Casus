@@ -17,24 +17,12 @@ var unirest = require("unirest");
 
 var xml2js = require('xml2js');
 
+var inUserid =  " "
+
 var objectEv = {
   event:
   [
-    // {
-//   title: "Placeholder event",
-//   image: "imgsrc",
-//   description: "this is the event description",
-//   start_time: "August 20, 2018",
-//   stop_time: "August 21, 2018"
-// },
-// {
-//   title: "placeholder2",
-//   image: "image2",
-//   description: "description2",
-//   start_time: "start2",
-//   stop_time: "end2"
-// }
-]
+    ]
 };
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
@@ -56,7 +44,7 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
       else {
         console.log(mediumImg)
       }
-      // console.log(objectEv.events[i].image[0].medium);
+     
     }
   });
 });
@@ -66,20 +54,13 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
 // =============================================================
 module.exports = function(app) {
 
-
-
-
   // GET route for landing page 
   app.get("/", function(req, res) {
-            
-      res.render("index")
-
+        res.render("index")
   })
 
   app.get("/api/logout", function(req, res) {
-          
       res.render("index")
-
   })
   
   // GET route for getting a specific users
@@ -201,19 +182,49 @@ module.exports = function(app) {
           userValid = false 
     }
     
-    if (userValid) {
-      var n = req.body.Email.indexOf("@")   // determine position of @ sign
-      var userid = req.body.Email.slice(0, n);  //split email to use for userid
+    var n = req.body.Email.indexOf("@")   // determine position of @ sign
+    inUserid = req.body.Email.slice(0, n);  //split email to use for userid
 
+    db.Users.findOne({
+      where: {
+        userid: inUserid
+    }
+    }).then(function(dbUsers) {
+      console.log("The inuserid " + inUserid)
+      console.log("The userid " + dbUsers)
+      if (dbUsers != null) {}
+      else {
+        error = 'Userid already exists'
+        userValid = false
+      }
+    })
+
+    if (userValid) {
+          
       db.Users.create({
-        userid: userid,        
+        userid: inUserid,        
         password: req.body.Password,          
         email: req.body.Email,  
         zipcode: req.body.Zipcode,
         twitterid: req.body.Twitter
       }).then(function(dbUsers) {
         // We have access to the new user as an argument inside of the callback function
-        
+       
+        if (req.body.Tag != ""){
+          db.Usertags.create({
+            userid: inUserid,
+            usertag: req.body.Tag
+          }).then(function(dbUsertags) {})}
+
+        if (req.body.userCategory === ""){
+          req.body.userCategory = 'Event'
+        }
+       
+        db.Usercategories.create({
+          userid: inUserid,
+          userCategory: req.body.userCategory
+        }).then(function(dbUsercategories) {})
+
         res.render("index", objectEv)
       })
     }

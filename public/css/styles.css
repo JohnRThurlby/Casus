@@ -389,3 +389,13 @@ div {
   width: 150px;
   height: 150px;
   }
+
+  .modal { 
+    width: 50% !important ; 
+    left: 10%;
+  } 
+
+::placeholder { 
+    color: black;
+    opacity: 1; 
+}

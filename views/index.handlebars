@@ -37,6 +37,26 @@
    
    <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
    <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
+   <select required name="userCategory">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="Music">Music</option>
+      <option value="Visual Arts">Visual Arts</option>
+      <option value="Performing Arts">Performing Arts</option>
+      <option value="Film">Film</option>
+      <option value="Lectures & Books">Lectures and Books</option>
+      <option value="Fashion">Fashion</option>
+      <option value="Food & Drink">Food and Drink</option>
+      <option value="Festivals and Fairs">Festivals and Fairs</option>
+      <option value="Charities">Charities</option>
+      <option value="Sports and Active Life">Sports and Active Life</option>
+      <option value="Nightlife">Nightlife</option>
+      <option value="Kids and Family">Kids and Family</option>
+      <option value="Other">Other</option>
+  </select>
+    
+  <input type="text" placeholder="Tag" id="Tag" name="Tag" class="input"/>
+   
+   
 
    <input type="submit" value="Sign up" class="input input--submit" />
 
@@ -117,7 +137,7 @@
 </div>
 
 {{!-- Container for the Create Events form. --}}
-<div id="modal2" class="createEvent modal bottom-sheet">
+<div id="modal2" class="createEvent modal" startingTop="10%" dismissible>
   <div class="modal-content">
     <h4>Add Your Own Event</h4>
     <form action="/api/userevents" method="POST">
