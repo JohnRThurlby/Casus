@@ -5,19 +5,32 @@
 // =============================================================
 
 // Requiring our models
+require("dotenv").config()
 const db = require("../models"),
       postcode = require('postcode-validator'),
       validator = require("email-validator"),
       ValidatePassword = require('validate-password'),
-      validPass = new ValidatePassword()
+      validPass = new ValidatePassword(),
+      Twitter = require('twitter'),
+      store = require('store'),
+      unirest = require("unirest"),
+      xml2js = require('xml2js')
 
-      // var express = require("express");
-
-var unirest = require("unirest");
-
-var xml2js = require('xml2js');
+//if (process.env.NODE_ENV != "PRODUCTION") {
+  var client = new Twitter({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+  })
+//}
+//else {
+//  var client = new Twitter(keys.twitter)
+//  
+//}
 
 var inUserid =  " "
+var storeUserid =  " "
 
 var objectEv = {
   event:
@@ -77,7 +90,10 @@ module.exports = function(app) {
         
       // We have access to the users as an argument inside of the callback function
       // getEvents()
+         storeUserid = dbUsers.userid
+         store.set(storeUserid)
          res.render("index", objectEv)
+
       }
       else {
         
@@ -224,7 +240,7 @@ module.exports = function(app) {
           userid: inUserid,
           userCategory: req.body.userCategory
         }).then(function(dbUsercategories) {})
-
+        
         res.render("index", objectEv)
       })
     }
@@ -253,6 +269,17 @@ module.exports = function(app) {
     // create takes an argument of an object describing the user event we want to
     // insert into our table. 
     console.log(req.body)
+
+    store.get(storeUserid)
+
+    var eventPub = false
+    var eventPri = false
+    if (req.body.eventPublic == 'on') {
+      eventPub = true
+    }
+    else {
+      eventPri = true
+    }
     db.Userevents.create({
       eventtitle: req.body.eventTitle, 
       eventdesc: req.body.eventDescription,
@@ -260,19 +287,27 @@ module.exports = function(app) {
       eventstartdate: req.body.eventStartdate, 
       eventenddate: req.body.eventEnddate,
       eventcapacity: req.body.eventCapacity, 
-      eventpublic: false,
-      eventprivate: true,
+      eventpublic: eventPub,
+      eventprivate: eventPri,
       eventcategory: req.body.eventCategory,
-      eventUserid: 'johnrthurlby'      
+      eventUserid: storeUserid      
     }).then(function(dbUserevents) {      
       // We have access to the new user event as an argument inside of the callback function
      if (req.body.eventTag != ""){
       db.Usertags.create({
-        userid: 'johnrthurlby',
+        userid: storeUserid,
         usertag: req.body.eventTag
       }).then(function(dbUsertags) {})}
         // We have access to the new user tag as an argument inside of the callback function
-             
+        if (req.body.eventTwitter != "" && eventPub){
+        var tweetMsg = req.body.eventTitle + " on " + req.body.eventStartdate + ". First "  + req.body.eventCapacity + " responses will be sent location and further details" 
+        client.post('statuses/update', {status: tweetMsg},  function(error, tweet, response){
+          if(error){
+            console.log(error);
+          }
+          console.log(tweet);  // Tweet body.
+          // console.log(response);  // Raw response object.
+        })}      
       res.render("index", objectEv)
     })
   })

@@ -141,27 +141,27 @@
   <div class="modal-content">
     <h4>Add Your Own Event</h4>
     <form action="/api/userevents" method="POST">
-      <h5>Event Title:</h5><br>
-    <input type="text" name="eventTitle" placeholder="Event Title" >
+      <h5>Event Title:</h5>
+    <input type="text" name="eventTitle" placeholder="Event Title" required >
     <br>
 
-    <h5>Event Description:</h5><br>
+    <h5>Event Description:</h5>
     <textarea id="eventDescription" name="eventDescription"></textarea>
     <br>
     
-    <h5>Event Location:</h5><br>
-    <textarea id="eventLocation" name="eventLocation"></textarea>
+    <h5>Event Location:</h5>
+    <textarea id="eventLocation" name="eventLocation" required></textarea>
     <br>
 
-    <h5>Event Start Date:</h5><br>
-    <input type="datetime-local" name="eventStartdate" required>
+    <h5>Event Start Date:</h5>
+    <input type="datetime-local" name="eventStartdate" required maxlength="20">
     <br>
 
-    <h5>Event End Date:</h5><br>
-    <input type="datetime-local" name="eventEnddate" required>
+    <h5>Event End Date:</h5>
+    <input type="datetime-local" name="eventEnddate" required maxlength="20">
     <br>
     
-    <h5>Event Type:</h5><br>
+    <h5>Event Type:</h5>
      <label>
         <input type="checkbox" name="eventPublic" />
         <span>Public</span>
@@ -172,13 +172,13 @@
       </label>
     <br>
 
-    <h5>Capacity:</h5><br>
-    <input type="number" min="0" name="eventCapacity" id="eventCapacity">
+    <h5>Capacity:</h5>
+    <input type="number" min="0" name="eventCapacity" id="eventCapacity" >
     <br>
 
-    <h5>Categories:</h5><br>
+    <h5>Categories:</h5>
     <div class="input-field col s12">
-    <select required name="eventCategory">
+    <select required name="eventCategory" maxlength="30">
       <option value="" disabled selected>Choose your option</option>
       <option value="Music">Music</option>
       <option value="Visual Arts">Visual Arts</option>
@@ -197,7 +197,13 @@
     </div>
     <br>
     {{!-- Tags for the event --}}
+    <h5>Tag:</h5>
     <input placeholder="Tags" id="tags" type="text" name="eventTag" class="validate"></input>
+    <br>
+    <h5>If you would like to tweet your event, enter your Twitter id:</h5>
+    <input placeholder="Twitterid" id="twitterid" type="text" name="eventTwitter" class="validate"></input>
+
+
     <button class="btn waves-effect waves-light" type="submit" >Add Event</button>
     </form>
     
