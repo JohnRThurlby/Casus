@@ -39,7 +39,7 @@ var objectEv = {
 };
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
-unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=orlando")
+unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=32835")
 .header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
 .header("Accept", "text/plain")
 .end(function (result) {
@@ -57,11 +57,10 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
       else {
         console.log(mediumImg)
       }
-     
+    
     }
   });
 });
-
 
 // Routes
 // =============================================================
@@ -73,7 +72,9 @@ module.exports = function(app) {
   })
 
   app.get("/api/logout", function(req, res) {
-      res.render("index")
+      
+    res.render("index")
+
   })
   
   // GET route for getting a specific users
@@ -90,9 +91,9 @@ module.exports = function(app) {
         
       // We have access to the users as an argument inside of the callback function
       // getEvents()
-         storeUserid = dbUsers.userid
-         store.set(storeUserid)
-         res.render("index", objectEv)
+           storeUserid = dbUsers.userid
+           store.set(storeUserid)
+           res.render("index", objectEv)
 
       }
       else {
@@ -270,10 +271,11 @@ module.exports = function(app) {
     // insert into our table. 
     console.log(req.body)
 
-    store.get(storeUserid)
-
     var eventPub = false
     var eventPri = false
+
+    store.get(storeUserid)
+
     if (req.body.eventPublic == 'on') {
       eventPub = true
     }
