@@ -32,10 +32,19 @@
                         {{start_time}}
                     </div>
                     <div class = "like">
-                        like button
+                        <form action="/api/userlikes" method="POST"></form>
+                        <button class="btn waves-effect waves-light" type="submit" >Like Event</button>
+                        </form>
                     </div>
                     <div class = "remove">
-                        remove button
+                         <form action="/api/userdislikes" method="POST"></form>
+                        <button class="btn waves-effect waves-light" type="submit" >Remove Liked Event</button>
+                        </form>
+                    </div>
+                    <div class = "buy">
+                         <form action="/api/userbuy" method="POST"></form>
+                        <button class="btn waves-effect waves-light" type="submit" >Buy a ticket</button>
+                        </form>
                     </div>
                 </div>
 

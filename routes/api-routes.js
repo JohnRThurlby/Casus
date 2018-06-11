@@ -39,7 +39,7 @@ var objectEv = {
 };
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
-unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=32835")
+unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=orlando")
 .header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
 .header("Accept", "text/plain")
 .end(function (result) {
@@ -90,7 +90,6 @@ module.exports = function(app) {
       if (dbUsers != null) {
         
       // We have access to the users as an argument inside of the callback function
-      // getEvents()
            storeUserid = dbUsers.userid
            store.set(storeUserid)
            res.render("index", objectEv)
