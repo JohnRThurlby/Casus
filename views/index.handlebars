@@ -4,8 +4,6 @@
 
 <input type="radio" id="toggle--signup" name="toggle" class="ghost" />
 
-<img class="logo framed" src="" alt="CASUS LOGO" />
-
 <form class="form form--login framed" action="/api/users" method="GET">
 
    <input type="email" placeholder="Email" id="Email2" name="Email2" class="input input--top" required />
@@ -34,6 +32,27 @@
      <span class="tooltiptext">Password must be minimum 8 chars,and must contain one lowercase, one uppercase, one numeric, and one special character</span>
    </div>
    <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
+   <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
+   <select required name="userCategory">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="Music">Music</option>
+      <option value="Visual Arts">Visual Arts</option>
+      <option value="Performing Arts">Performing Arts</option>
+      <option value="Film">Film</option>
+      <option value="Lectures & Books">Lectures and Books</option>
+      <option value="Fashion">Fashion</option>
+      <option value="Food & Drink">Food and Drink</option>
+      <option value="Festivals and Fairs">Festivals and Fairs</option>
+      <option value="Charities">Charities</option>
+      <option value="Sports and Active Life">Sports and Active Life</option>
+      <option value="Nightlife">Nightlife</option>
+      <option value="Kids and Family">Kids and Family</option>
+      <option value="Other">Other</option>
+  </select>
+    
+  <input type="text" placeholder="Tag" id="Tag" name="Tag" class="input"/>
+   
+   
 
    <input type="submit" value="Sign up" class="input input--submit" />
 
@@ -64,20 +83,35 @@
 
 
 {{!-- Header Container --}}
-<header>
+{{!-- <header>
 
  <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">CASUS</a>
+      <a href="https://radiant-eyrie-36675.herokuapp.com/" id="logo-container" class="brand-logo"> <img src="/images/CASUS.png" alt="Logo"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <form>
            <li><a class="waves-effect waves-light btn modal-trigger red" href="#modal2">Create Event!</a></li>
+          
            <li><button action="/api/logout" method="GET" class="waves-effect waves-light red" type="submit" >Log Out</button></li>
+           
         </form>
       </ul>
     </div>
   </nav>
 
+</header> --}}
+
+{{!-- NEW Updated Header-Amani --}}
+<header>
+ <nav>
+    <div class="nav-wrapper  blue lighten-4">
+        <a href="https://radiant-eyrie-36675.herokuapp.com/" id="logo-container" class="brand-logo"> <img src="/images/CASUS.png" alt="Logo"> </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="blue lighten-4"><a class="modal-trigger" href="#modal2">Create Event</a></li>
+        <li class="logout blue lighten-4"><a href="/api/logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
 </header>
 
 {{!-- Social media login page. "action = '/action_page.php' removed." --}}
@@ -99,42 +133,48 @@
 </div>
 
 {{!-- Container for the Create Events form. --}}
-<div id="modal2" class="createEvent modal bottom-sheet">
+<div id="modal2" class="createEvent modal" startingTop="10%" dismissible>
   <div class="modal-content">
     <h4>Add Your Own Event</h4>
     <form action="/api/userevents" method="POST">
-      <h5>Event Title:</h5><br>
-    <input type="text" name="eventTitle" placeholder="Event Title" >
+      <h5>Event Title:</h5>
+    <input type="text" name="eventTitle" placeholder="Event Title" required >
     <br>
 
-    <h5>Event Description:</h5><br>
+    <h5>Event Description:</h5>
     <textarea id="eventDescription" name="eventDescription"></textarea>
     <br>
     
-    <h5>Event Location:</h5><br>
-    <textarea id="eventLocation" name="eventLocation"></textarea>
+    <h5>Event Location:</h5>
+    <textarea id="eventLocation" name="eventLocation" required></textarea>
     <br>
 
-    <h5>Event Start Date:</h5><br>
-    <input type="datetime-local" name="eventStartdate" required>
+    <h5>Event Start Date:</h5>
+    <input type="datetime-local" name="eventStartdate" required maxlength="20">
     <br>
 
-    <h5>Event End Date:</h5><br>
-    <input type="datetime-local" name="eventEnddate" required>
+    <h5>Event End Date:</h5>
+    <input type="datetime-local" name="eventEnddate" required maxlength="20">
     <br>
     
-    <h5>Event Type:</h5><br>
-    <input type="radio" name="eventType" value="public" /> Public<br>
-    <input type="radio" name="eventType" value="private" /> Private<br>
+    <h5>Event Type:</h5>
+     <label>
+        <input type="checkbox" name="eventPublic" />
+        <span>Public</span>
+      </label>
+      <label>
+        <input type="checkbox" name="eventPrivate" />
+        <span>Private</span>
+      </label>
     <br>
 
-    <h5>Capacity:</h5><br>
-    <input type="number" min="0" name="eventCapacity" id="eventCapacity">
+    <h5>Capacity:</h5>
+    <input type="number" min="0" name="eventCapacity" id="eventCapacity" >
     <br>
 
-    <h5>Categories:</h5><br>
+    <h5>Categories:</h5>
     <div class="input-field col s12">
-    <select required name="eventCategory">
+    <select required name="eventCategory" maxlength="30">
       <option value="" disabled selected>Choose your option</option>
       <option value="Music">Music</option>
       <option value="Visual Arts">Visual Arts</option>
@@ -153,7 +193,13 @@
     </div>
     <br>
     {{!-- Tags for the event --}}
+    <h5>Tag:</h5>
     <input placeholder="Tags" id="tags" type="text" name="eventTag" class="validate"></input>
+    <br>
+    <h5>If you would like to tweet your event, enter your Twitter id:</h5>
+    <input placeholder="Twitterid" id="twitterid" type="text" name="eventTwitter" class="validate"></input>
+
+
     <button class="btn waves-effect waves-light" type="submit" >Add Event</button>
     </form>
     
@@ -204,3 +250,16 @@ $(document).ready(function(){
   });
 
 </script>
+
+<script>
+    $(document).ready(function(){
+        $('#logout').on('click', function(e){
+            if(confirm("Are you sure you want to logout?"))
+                window.location.href = "http://localhost/login.php";
+
+            return false;
+        });
+    });
+</script>
+
+

@@ -5,36 +5,37 @@
 // =============================================================
 
 // Requiring our models
+require("dotenv").config()
 const db = require("../models"),
       postcode = require('postcode-validator'),
       validator = require("email-validator"),
       ValidatePassword = require('validate-password'),
-      validPass = new ValidatePassword()
+      validPass = new ValidatePassword(),
+      Twitter = require('twitter'),
+      store = require('store'),
+      unirest = require("unirest"),
+      xml2js = require('xml2js')
 
-      // var express = require("express");
+//if (process.env.NODE_ENV != "PRODUCTION") {
+  var client = new Twitter({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+  })
+//}
+//else {
+//  var client = new Twitter(keys.twitter)
+//  
+//}
 
-var unirest = require("unirest");
-
-var xml2js = require('xml2js');
+var inUserid =  " "
+var storeUserid =  " "
 
 var objectEv = {
   event:
   [
-    // {
-//   title: "Placeholder event",
-//   image: "imgsrc",
-//   description: "this is the event description",
-//   start_time: "August 20, 2018",
-//   stop_time: "August 21, 2018"
-// },
-// {
-//   title: "placeholder2",
-//   image: "image2",
-//   description: "description2",
-//   start_time: "start2",
-//   stop_time: "end2"
-// }
-]
+    ]
 };
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
@@ -56,29 +57,23 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
       else {
         console.log(mediumImg)
       }
-      // console.log(objectEv.events[i].image[0].medium);
+    
     }
   });
 });
-
 
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-
-
-
   // GET route for landing page 
   app.get("/", function(req, res) {
-            
-      res.render("index")
-
+        res.render("index")
   })
 
   app.get("/api/logout", function(req, res) {
-          
-      res.render("index")
+      
+    res.render("index")
 
   })
   
@@ -95,8 +90,10 @@ module.exports = function(app) {
       if (dbUsers != null) {
         
       // We have access to the users as an argument inside of the callback function
-      // getEvents()
-         res.render("index", objectEv)
+           storeUserid = dbUsers.userid
+           store.set(storeUserid)
+           res.render("index", objectEv)
+
       }
       else {
         
@@ -201,18 +198,48 @@ module.exports = function(app) {
           userValid = false 
     }
     
-    if (userValid) {
-      var n = req.body.Email.indexOf("@")   // determine position of @ sign
-      var userid = req.body.Email.slice(0, n);  //split email to use for userid
+    var n = req.body.Email.indexOf("@")   // determine position of @ sign
+    inUserid = req.body.Email.slice(0, n);  //split email to use for userid
 
+    db.Users.findOne({
+      where: {
+        userid: inUserid
+    }
+    }).then(function(dbUsers) {
+      console.log("The inuserid " + inUserid)
+      console.log("The userid " + dbUsers)
+      if (dbUsers != null) {}
+      else {
+        error = 'Userid already exists'
+        userValid = false
+      }
+    })
+
+    if (userValid) {
+          
       db.Users.create({
-        userid: userid,        
+        userid: inUserid,        
         password: req.body.Password,          
         email: req.body.Email,  
         zipcode: req.body.Zipcode,
         twitterid: req.body.Twitter
       }).then(function(dbUsers) {
         // We have access to the new user as an argument inside of the callback function
+       
+        if (req.body.Tag != ""){
+          db.Usertags.create({
+            userid: inUserid,
+            usertag: req.body.Tag
+          }).then(function(dbUsertags) {})}
+
+        if (req.body.userCategory === ""){
+          req.body.userCategory = 'Event'
+        }
+       
+        db.Usercategories.create({
+          userid: inUserid,
+          userCategory: req.body.userCategory
+        }).then(function(dbUsercategories) {})
         
         res.render("index", objectEv)
       })
@@ -242,6 +269,18 @@ module.exports = function(app) {
     // create takes an argument of an object describing the user event we want to
     // insert into our table. 
     console.log(req.body)
+
+    var eventPub = false
+    var eventPri = false
+
+    store.get(storeUserid)
+
+    if (req.body.eventPublic == 'on') {
+      eventPub = true
+    }
+    else {
+      eventPri = true
+    }
     db.Userevents.create({
       eventtitle: req.body.eventTitle, 
       eventdesc: req.body.eventDescription,
@@ -249,19 +288,27 @@ module.exports = function(app) {
       eventstartdate: req.body.eventStartdate, 
       eventenddate: req.body.eventEnddate,
       eventcapacity: req.body.eventCapacity, 
-      eventpublic: false,
-      eventprivate: true,
+      eventpublic: eventPub,
+      eventprivate: eventPri,
       eventcategory: req.body.eventCategory,
-      eventUserid: 'johnrthurlby'      
+      eventUserid: storeUserid      
     }).then(function(dbUserevents) {      
       // We have access to the new user event as an argument inside of the callback function
      if (req.body.eventTag != ""){
       db.Usertags.create({
-        userid: 'johnrthurlby',
+        userid: storeUserid,
         usertag: req.body.eventTag
       }).then(function(dbUsertags) {})}
         // We have access to the new user tag as an argument inside of the callback function
-             
+        if (req.body.eventTwitter != "" && eventPub){
+        var tweetMsg = req.body.eventTitle + " on " + req.body.eventStartdate + ". First "  + req.body.eventCapacity + " responses will be sent location and further details" 
+        client.post('statuses/update', {status: tweetMsg},  function(error, tweet, response){
+          if(error){
+            console.log(error);
+          }
+          console.log(tweet);  // Tweet body.
+          // console.log(response);  // Raw response object.
+        })}      
       res.render("index", objectEv)
     })
   })

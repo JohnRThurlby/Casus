@@ -380,3 +380,22 @@ div {
   font-size: 0.8em;
   font-weight: 700;
 }
+
+.brand-logo {
+  position: relative; 
+  top: -40px;
+}
+.brand-logo>img {
+  width: 150px;
+  height: 150px;
+  }
+
+  .modal { 
+    width: 50% !important ; 
+    left: 10%;
+  } 
+
+::placeholder { 
+    color: black;
+    opacity: 1; 
+}
