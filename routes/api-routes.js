@@ -48,6 +48,7 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
   parseString(result.body, function (err, results) {
     let eventful = results.search.events[0].event;
     objectEv.events = objectEv.event.concat(eventful);
+    console.log(objectEv.event.concat(eventful))
     // console.log(objectEv.events.length);
     for (var i = 0; i < objectEv.events.length; i++) {
       var mediumImg = objectEv.events[i].image[0].medium;
