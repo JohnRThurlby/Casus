@@ -41,9 +41,7 @@ input[type=submit]:hover {
   background-color: #45a049;
 } 
 
-/* Anibal deleted the social media login modal. 6/5/18 */
 
- 
 
 
 
@@ -55,11 +53,7 @@ input[type=submit]:hover {
 
 
 
-/* Style the submit button */
-/* input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-} */
+
 
 /* Style the container for inputs */
 .container {
@@ -110,15 +104,6 @@ input[type=submit]:hover {
     width: 100%;
     margin-top: 0;
   }
-  /* hide the vertical line */
-  /* .vl {
-    display: none;
-  } */
-  /* show the hidden text on small screens */
-  /* .hide-md-lg {
-    display: block;
-    text-align: center;
-  } */
 }
 
 
@@ -386,8 +371,9 @@ div {
   top: -40px;
 }
 .brand-logo>img {
-  width: 150px;
-  height: 150px;
+  width: 10%;
+  height: 20%;
+  position: fixed;
   }
 
   .modal { 
