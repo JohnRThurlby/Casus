@@ -325,7 +325,17 @@ module.exports = function(app) {
       likesource:req.body.likesource      
     }).then(function(dbUserlikes) {
       // We have access to the new user event as an argument inside of the callback function
-      res.json(dbUserlikes)
+      res.render("index", objectEv)
+    })
+  })
+  app.post("/api/userdislikes", function(req, res) {
+    // create takes an argument of an object describing the user like 
+    db.Userlikes.destroy({
+        where: { liketitle: req.body.liketitle }
+            
+    }).then(function(dbUserlikes) {
+     // We have access to the new user event as an argument inside of the callback function
+     res.render("index", objectEv)
     })
   })
 }
