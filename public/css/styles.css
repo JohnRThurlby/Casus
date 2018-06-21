@@ -188,6 +188,14 @@ html, body {
   /* overflow: hidden!important; */
 }
 
+.googleMap {
+  width: 100%!important;
+  height: 100%!important;
+  margin: 0!important;
+  font-family: Helvetica, Arial, sans-serif!important;
+  /* overflow: hidden!important; */
+}
+
 .ghost {
   position: absolute!important;
   left: -100%!important;

@@ -17,10 +17,11 @@
                 {{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}
                 </div>
                 <div class = "col s6">
-                    <div class = "left googleMap">
+                    <div class="googleMap">
                         <a href="//maps.google.com/?q={{venue_address}}{{city_name}}{{region_abbr}}{{postal_code}}@{{latitude}},{{longitude}}" target="_blank" data-ga-label="Full Map Link" itemprop="map">
-                            <img src="//maps.googleapis.com/maps/api/staticmap?zoom=13&amp;size=314x300&amp;maptype=roadmap&amp;markers=color:red%7Ccolor:red%7C{{latitude}},{{longitude}}&amp;key=AIzaSyBZyI2NwL198_2YM1ZBlZ3FdDb6JcOnUPI&amp;sensor=false" alt="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}">
-                            Full Map and Directions</a>
+                        <img src="//maps.googleapis.com/maps/api/staticmap?zoom=13&amp;size=314x300&amp;maptype=roadmap&amp;markers=color:red%7Ccolor:red%7C{{latitude}},{{longitude}}&amp;key=AIzaSyBZyI2NwL198_2YM1ZBlZ3FdDb6JcOnUPI&amp;sensor=false" alt="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}">
+                        <br>
+                        <p>Full Map and Directions</p></a>
                     </div>
                 </div>
             </div>
@@ -51,7 +52,7 @@
                 <div class = "col s3"></div>
             </div>
              <div class = "row">
-                    <div class = "col s3"></div>
+                    <div class = "col s4"></div>
                     <div class = "col s2">
                     <div class = "like">
                         <!--<form action="/api/userlikes" method="POST"> -->
@@ -64,12 +65,7 @@
                         <button class="btn waves-effect waves-light" type="submit" formaction="/api/userdislikes/{{title}}" method="POST">Remove Liked Event</button>
                     </div>
                     </div>
-                    <div class = "col s2">
-                    <div class = "buy">
-                        <button class="btn waves-effect waves-light" formaction="/api/userbuy" method="POST" type="submit" >Buy a ticket</button>
                     </div>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
