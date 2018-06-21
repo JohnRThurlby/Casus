@@ -3,19 +3,18 @@
     {{!-- This is a placeholder for what the dynamically generated events look like. use as template for styling. --}}
     <div class = "row">
         <div class = "col s12">
+            <form action="/api/userlikes" method="POST">
             <div class = "row">
                 <div class = "col s2">
                     <h5>Title:</h5>
-                    <div class = "title">
-                        {{title}}
-                    </div>
+                    <input type="hidden" class="title input" id="title" name="likeTitle" value="{{title}}" readonly>
+                     {{title}}   
                 </div>
                 <div class = "col s1"></div>
                 <div class = "col s3">
                     <h5>Location:</h5>
-                    <div class = "location">
-                        {{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}
-                    </div>
+                    <input type="hidden" class="location input" id="location" name="likeLocation" value="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}" readonly>
+                {{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}
                 </div>
                 <div class = "col s6">
                     <div class = "left googleMap">
@@ -36,40 +35,42 @@
 
                 <div class = "col s6">
                     <h5>Description:</h5>
-                    <div class = "eventDesc">
-                        {{description}}
-                    </div>
+                    <input type="hidden" class="eventDesc input" id="description" name="likeDescription" value="{{description}}" maxlength="1000" readonly>
+                    {{description}}
                     <h5>Start Time:</h5>
-                    <div class = "startTime">
-                        {{start_time}}
-                    </div>
+                    <input type="text" class="startDate input" id="startdate" name="likeStartdate" value="{{start_time}}" readonly>
                     <h5>End Time:</h5>
-                    <div class = "endTime">
-                        {{stop_time}}
-                    </div>
+                    <input type="text" class="endDate input" id="enddate" name="likeEnddate" value="{{stop_time}}" readonly>
                     <h5>Event Link:</h5>
                     <div class = "venue url">
-                        <a href="{{venue_url}}">{{title}}</a>
+                        <a href="{{venue_url}}" target="_blank">{{title}}</a>
                     </div>
                     <br>
-                    <div class = "like">
-                        <form action="/api/userlikes" method="POST">
-                        <button class="btn waves-effect waves-light" type="submit" >Like Event</button>
-                        </form>
-                    </div>
-                    <div class = "remove">
-                         <form action="/api/userdislikes" method="POST">
-                        <button class="btn waves-effect waves-light" type="submit" >Remove Liked Event</button>
-                        </form>
-                    </div>
-                    <div class = "buy">
-                         <form action="/api/userbuy" method="POST">
-                        <button class="btn waves-effect waves-light" type="submit" >Buy a ticket</button>
-                        </form>
-                    </div>
+                   
                 </div>
                 <div class = "col s3"></div>
             </div>
+             <div class = "row">
+                    <div class = "col s3"></div>
+                    <div class = "col s2">
+                    <div class = "like">
+                        <!--<form action="/api/userlikes" method="POST"> -->
+                        <button class="btn waves-effect waves-light" type="submit" >Like Event</button>
+                        <!-- /form -->
+                    </div>
+                    </div>
+                    <div class = "col s2">
+                    <div class = "remove">
+                        <button class="btn waves-effect waves-light" type="submit" formaction="/api/userdislikes/{{title}}" method="POST">Remove Liked Event</button>
+                    </div>
+                    </div>
+                    <div class = "col s2">
+                    <div class = "buy">
+                        <button class="btn waves-effect waves-light" formaction="/api/userbuy" method="POST" type="submit" >Buy a ticket</button>
+                    </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     {{!--  --}}

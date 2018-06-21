@@ -6,7 +6,7 @@ module.exports =  function (sequelize, DataTypes) {
       allowNull: false
     },
     likedesc: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT('medium') ,
       allowNull: false
     },
     likelocation: {
@@ -14,28 +14,31 @@ module.exports =  function (sequelize, DataTypes) {
       allowNull: false
     },
     likestartdate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false
     },
     likeenddate: {
-      type: DataTypes.DATE,
-      allowNull: false
+      type: DataTypes.STRING      
     },
     likesource: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    likeUserid: {
       type: DataTypes.STRING,
       allowNull: false
     }
   })
   
-  Userlikes.associate = function (models) {
+  //Userlikes.associate = function (models) {
     // We're saying that a Userevent should belong to a User
     // A Userevent can't be created without a User due to the foreign key constraint
-    Userlikes.belongsTo(models.Users, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
-  }
+  //  Userlikes.belongsTo(models.Users, {
+  //    foreignKey: {
+   //     allowNull: false
+  //    }
+  //  })
+  //}
   
   return Userlikes
 }

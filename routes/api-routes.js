@@ -39,7 +39,7 @@ var objectEv = {
 };
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
-unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=orlando")
+unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&q=music&location=orlando&include=tickets")
 .header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
 .header("Accept", "text/plain")
 .end(function (result) {
@@ -316,23 +316,26 @@ module.exports = function(app) {
 
   // POST route for saving a new user like
   app.post("/api/userlikes", function(req, res) {
+    console.log(storeUserid)
     // create takes an argument of an object describing the user like 
     db.Userlikes.create({
-      liketitle: req.body.liketitle,
-      likedesc: req.body.likedesc,
-      likelocation: req.body.likelocation, 
-      likestartdate: req.body.likestartdate,
-      likeenddate: req.body.likeenddate,
-      likesource:req.body.likesource      
+      liketitle: req.body.likeTitle,
+      likedesc: req.body.likeDescription,
+      likelocation: req.body.likeLocation, 
+      likestartdate: req.body.likeStartdate,
+      likeenddate: req.body.likeEnddate,
+      likesource: "EventFul",  
+      likeUserid: storeUserid     
     }).then(function(dbUserlikes) {
       // We have access to the new user event as an argument inside of the callback function
       res.render("index", objectEv)
     })
   })
-  app.post("/api/userdislikes", function(req, res) {
+
+  app.post("/api/userdislikes/:title", function(req, res) {
     // create takes an argument of an object describing the user like 
     db.Userlikes.destroy({
-        where: { liketitle: req.body.liketitle }
+        where: { liketitle: req.params.title }
             
     }).then(function(dbUserlikes) {
      // We have access to the new user event as an argument inside of the callback function
