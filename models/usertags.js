@@ -7,6 +7,10 @@ module.exports =  function (sequelize, DataTypes) {
     usertag: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    eventtag: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   })
   

@@ -38,6 +38,12 @@ var objectEv = {
     ]
 };
 
+var eventObj = {
+  event:
+  [
+    ]
+};
+
 // These code snippets use an open-source library. http://unirest.io/nodejs
 unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&q=music&location=orlando&include=tickets")
 .header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
@@ -73,11 +79,16 @@ module.exports = function(app) {
         res.render("index")
   })
 
-  app.get("/api/logout", function(req, res) {
-      
-    res.render("index")
-
+  // GET route for landing page 
+  app.get("/api/feed", function(req, res) {
+    res.render("index", objectEv)
   })
+
+  app.get("/api/logout", function(req, res) {
+  
+  res.render("index")
+
+})
   
   // GET route for getting a specific users
   app.get("/api/users/", function(req, res) {
@@ -88,7 +99,7 @@ module.exports = function(app) {
         password: req.query.Password2
       }
     }).then(function(dbUsers) {
-      console.log(dbUsers)
+      
       if (dbUsers != null) {
         
       // We have access to the users as an argument inside of the callback function
@@ -101,7 +112,7 @@ module.exports = function(app) {
         
         error = 'Invalid userid/password combination'
         var hbsObject = {error}
-        console.log(hbsObject)
+        
         res.render('index', hbsObject)
       }
       
@@ -110,28 +121,34 @@ module.exports = function(app) {
   })
 
   // GET route for getting a specific users events
-  app.get("/api/userevents/:id", function(req, res) {
+  app.get("/api/userevents", function(req, res) {
     // findAll returns all entries from the userevents table for a specific user
     db.Userevents.findAll({
       where: {
-        id: req.params.id
+        eventUserid: storeUserid
       }
-    }).then(function(dbUserevents) {
+    }).then(function(data) {
       // We have access to the users events as an argument inside of the callback function
-      res.json(dbUserevents)
+      var hbsObject = { events: data}
+      console.log (hbsObject)
+      
+      res.render('event', hbsObject)
     })
   })
 
   // GET route for getting a specific users likes
-  app.get("/api/userlikes/:id", function(req, res) {
+  app.get("/api/userlikes", function(req, res) {
     // findAll returns all entries from the userlikes table for a specific user
     db.Userlikes.findAll({
       where: {
-        id: req.params.id
+        likeUserid: storeUserid
       }
-    }).then(function(dbUserlikes) {
+    }).then(function(data) {
       // We have access to the users likes as an argument inside of the callback function
-      res.json(dbUserlikes)
+      var hbsObject = { events: data}
+      console.log (hbsObject)
+      
+      res.render('likes', hbsObject)
     })
   })
 
@@ -208,8 +225,6 @@ module.exports = function(app) {
         userid: inUserid
     }
     }).then(function(dbUsers) {
-      console.log("The inuserid " + inUserid)
-      console.log("The userid " + dbUsers)
       if (dbUsers != null) {}
       else {
         error = 'Userid already exists'
@@ -254,18 +269,6 @@ module.exports = function(app) {
     }  
   })
 
-  // POST route for saving a new user tag
-  app.post("/api/usertags", function(req, res) {
-    // create takes an argument of an object describing the user tag we want to
-    // insert into our table.
-    db.Usertags.create({
-      usertag: req.body.usertag
-    }).then(function(dbUsertags) {
-      // We have access to the new user tag as an argument inside of the callback function
-      res.json(dbUsertags)
-    })
-  })
-
   // POST route for saving a new user event
   app.post("/api/userevents", function(req, res) {
     // create takes an argument of an object describing the user event we want to
@@ -299,7 +302,8 @@ module.exports = function(app) {
      if (req.body.eventTag != ""){
       db.Usertags.create({
         userid: storeUserid,
-        usertag: req.body.eventTag
+        usertag: req.body.eventTag,
+        eventtag: req.body.eventTitle
       }).then(function(dbUsertags) {})}
         // We have access to the new user tag as an argument inside of the callback function
         if (req.body.eventTwitter != "" && eventPub){
