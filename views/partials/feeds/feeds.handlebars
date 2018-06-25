@@ -1,17 +1,17 @@
 
 {{!-- <script>console.log({{events}})</script> --}}
     {{!-- This is a placeholder for what the dynamically generated events look like. use as template for styling. --}}
-    <div class = "row">
+    <div class = "row feedcont">
         <div class = "col s12">
             <form action="/api/userlikes" method="POST">
             <div class = "row">
-                <div class = "col s2">
+                <div class = "col s2 title">
                     <h5>Title:</h5>
                     <input type="hidden" class="title input" id="title" name="likeTitle" value="{{title}}" readonly>
                      {{title}}   
                 </div>
                 <div class = "col s1"></div>
-                <div class = "col s3">
+                <div class = "col s3 locCont">
                     <h5>Location:</h5>
                     <input type="hidden" class="location input" id="location" name="likeLocation" value="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}" readonly>
                 {{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}
@@ -19,7 +19,7 @@
                 <div class = "col s6">
                     <div class="googleMap">
                         <a href="//maps.google.com/?q={{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}" target="_blank" data-ga-label="Full Map Link" itemprop="map">
-                        <img src="//maps.googleapis.com/maps/api/staticmap?zoom=13&amp;size=314x300&amp;maptype=roadmap&amp;markers=color:red%7Ccolor:red%7C{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}&amp;key=AIzaSyBZyI2NwL198_2YM1ZBlZ3FdDb6JcOnUPI&amp;sensor=false" alt="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}">
+                        <img class = "googleMapImg" src="//maps.googleapis.com/maps/api/staticmap?zoom=13&amp;size=314x300&amp;maptype=roadmap&amp;markers=color:red%7Ccolor:red%7C{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}&amp;key=AIzaSyBZyI2NwL198_2YM1ZBlZ3FdDb6JcOnUPI&amp;sensor=false" alt="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}">
                         <br>
                         <p>Full Map and Directions</p></a>
                     </div>
@@ -29,15 +29,17 @@
             <div class = "row">
                 <div class = "col s3">
                     <div class = "image">
-                        <img src ={{#if image.[0].medium}}{{image.[0].medium.[0].url}}{{/if}}>
+                        <img src ={{#if image.[0].medium}}{{image.[0].medium.[0].url}}
+                                    {{else}}"images/Logo2.svg"{{/if}}class ="eventImg">
                     </div>
                 </div>
 
 
-                <div class = "col s6">
+                <div class = "col s6 descCol">
                     <h5>Description:</h5>
                     <input type="hidden" class="eventDesc input" id="description" name="likeDescription" value="{{description}}" maxlength="1000" readonly>
-                    {{description}}
+                    <div id = "desccont">
+                    {{description}}</div>
                     <h5>Start Time:</h5>
                     <input type="text" class="startDate input" id="startdate" name="likeStartdate" value="{{start_time}}" readonly>
                     <h5>End Time:</h5>

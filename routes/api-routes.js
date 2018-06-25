@@ -60,7 +60,7 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
     for (var i = 0; i < objectEv.events.length; i++) {
       var mediumImg = objectEv.events[i].image[0].medium;
       if (mediumImg!=undefined) {
-        //console.log (mediumImg[0]);
+        // console.log (mediumImg[0]);
       }
       else {
         //console.log(mediumImg)
