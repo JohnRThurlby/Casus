@@ -25,16 +25,14 @@
    <h2 class="text text--centered text--omega">Casus connects you to relevant events
        <b>streamlined and customized </b> in a seamless experience.</br>Connect with Casus</h2>
 
-   <input type="email" placeholder="Email" id="Email" name="Email" class="input input--top" required />
+    <input type="email" placeholder="Email" id="Email" name="Email" class="input input--top" required />
  
-   <div class="tooltip">
-     <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
-     <span class="tooltiptext">Password must be minimum 8 chars,and must contain one lowercase, one uppercase, one numeric, and one special character</span>
-   </div>
-   <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
-   <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
-   <select required name="userCategory">
-      <option value="" disabled selected>Choose your option</option>
+    <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
+    
+    <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
+    <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
+    <select required name="userCategory" >
+      <option disabled="disabled" selected="selected">Category</option>
       <option value="Music">Music</option>
       <option value="Visual Arts">Visual Arts</option>
       <option value="Performing Arts">Performing Arts</option>
@@ -48,9 +46,10 @@
       <option value="Nightlife">Nightlife</option>
       <option value="Kids and Family">Kids and Family</option>
       <option value="Other">Other</option>
-  </select>
+      
+    </select>
     
-  <input type="text" placeholder="Tag" id="Tag" name="Tag" class="input"/>
+    <input type="text" placeholder="Tag" id="Tag" name="Tag" class="input"/>
    
    
 
@@ -134,70 +133,57 @@
         <div class ="col s12">
             <form action="/api/removeevent/{{this.eventtitle}}" method="POST">
                 <div class="row">
-                    <div class="col s2 title">
+                    <div class="col s4 title">
                         <h5>Event Title:</h5>
                         <h6 id="eventTitle" name="eventTitle">{{this.eventtitle}}</h6>
                     </div>
-                    <div class="col s2"></div>
-                    <div class="col s6 descCol" >
+                    <div class="col s1"></div>
+                    <div class="col s5 descCol" >
                         <h5>Event Description:</h5>
                         <div id = "desccont">
                             <h6 id="eventDescription" name="eventDescription">{{this.eventdesc}}</h6>
                         </div>
+                        <h5>Event Start Date:</h5>
+                        <h6 id"eventStartdate" name="eventStartdate">{{this.eventstartdate}}</h6>
+                        <h5>Event End Date:</h5>
+                        <h6 id="eventEnddate" name="eventEnddate">{{this.eventenddate}}</h6>
                     </div>
                     <div class="col s2"></div>
-                </div>
-                <div class="row">
-                    <div class="locCont">
-                        <div class="col s2"></div>
-                        <div class="col s2">
-                            <h5>Event Start Date:</h5>
-                            <h6 id"eventStartdate" name="eventStartdate">{{this.eventstartdate}}</h6>
-                        </div>
-                        <div class="col s2"></div>
-                        <div class="col s2">
-                            <h5>Event End Date:</h5>
-                            <h6 id="eventEnddate" name="eventEnddate">{{this.eventenddate}}</h6>
-                        </div>
-                        <div class="col s2"></div>
-                    </div>
                 </div> <!-- end row -->
                 <div class="row">
-                    <div class="locCont">
-                        <div class="col s3"> 
-                            <h5>Event Location:</h5>  
-                            <h6 id="eventLocation" name="eventLocation"> {{this.eventlocation}}</h6>
-                        </div>
-                        <div class="col s7"></div>
+                    <div class="col s4 locCont"> 
+                        <h5>Event Location:</h5>  
+                        <h6 id="eventLocation" name="eventLocation"> {{this.eventlocation}}</h6>
                     </div>
+                    <div class="col s1"></div>
+                    <div class="col s2 locCont">
+                        <h5>Event Type:</h5>  
+                        {{#if this.eventpublic}}
+                            <h6 id="eventType" name="eventType">Public</h6>
+                        {{/if}}
+                        {{#if this.eventprivate}}
+                            <h6 id="eventType" name="eventType">Private</h6>
+                        {{/if}}
+                    </div>
+                    <div class="col s4"></div>
                 </div> <!-- end row -->
-                <div class="row"> 
-                    <div class="col s2"></div> 
-                    <div class="locCont">
-                        <div class="col s2 ">
-                            <h5>Event Type:</h5>  
-                            {{#if this.eventpublic}}
-                                <h6 id="eventType" name="eventType">Public</h6>
-                            {{/if}}
-                            {{#if this.eventprivate}}
-                                <h6 id="eventType" name="eventType">Private</h6>
-                            {{/if}}
-                        </div>
-                        <div class="col s2">
-                            <h5>Capacity:</h5>
-                            <h6 name="eventCapacity" id="eventCapacity">{{this.eventcapacity}}</h6>
-                        </div>
-                        <div class="col s2">
-                            <h5>Category</h5>
-                            <h6 name="eventCategory" id="eventCategory">{{this.eventcategory}}</h6>
-                        </div>
-                        <div class="col s2">
-                            <h5>Tag:</h5>
-                            <h6 name="eventTag" id="eventTag">{{eventTag}}</h6>
-                        </div>
-                        <div class="col s2"></div>
+                <div class="row">
+                    <div class="col s2 locCont">    
+                        <h5>Capacity:</h5>
+                        <h6 name="eventCapacity" id="eventCapacity">{{this.eventcapacity}}</h6>
                     </div>
-                </div> <!-- end row-->
+                    <div class="col s3"></div>
+                    <div class="col s2 locCont"> 
+                        <h5>Category</h5>
+                        <h6 name="eventCategory" id="eventCategory">{{this.eventcategory}}</h6>
+                    </div>
+                    <div class="col s2"></div>                        
+                    <div class="col s2 locCont">     
+                        <h5>Tag:</h5>
+                        <h6 name="eventTag" id="eventTag">{{eventTag}}</h6>
+                    </div>
+                    <div class="col s1"></div>
+                </div> <!-- end row -->
                 <div class="row">
                     <div class = "col s2"></div>
                     <div class = "col s6">
@@ -228,6 +214,52 @@
 {{!-- Footer Container --}}
 <footer>
 </footer>
+
+{{!-- <script src="/js/pswdval.js"></script> Linked to landing.js for toogle scripting. --}}
+<script src="/js/landing.js"></script>
+
+
+{{!-- <script src="/js/pswdval.js"></script> --}}
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script>
+  (function ($) {
+    $(function () {
+
+        //initialize all modals           
+        $('.modal').modal();
+
+        //now you can open modal from code
+        $('#modal1').modal('open');
+
+        //or by click on trigger
+        $('.trigger-modal').modal();
+
+    }); // end of document ready
+})(jQuery); // end of jQuery name space
+
+//Get the select form ready. 
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+     
+//Date picker get ready. 
+ $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#logout').on('click', function(e){
+            if(confirm("Are you sure you want to logout?"))
+                window.location.href = "http://localhost/login.php";
+
+            return false;
+        });
+    });
+</script>
 
 
 

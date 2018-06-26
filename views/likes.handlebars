@@ -27,14 +27,12 @@
 
    <input type="email" placeholder="Email" id="Email" name="Email" class="input input--top" required />
  
-   <div class="tooltip">
-     <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
-     <span class="tooltiptext">Password must be minimum 8 chars,and must contain one lowercase, one uppercase, one numeric, and one special character</span>
-   </div>
+   <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
+  
    <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
    <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
-   <select required name="userCategory">
-      <option value="" disabled selected>Choose your option</option>
+   <select required name="userCategory" >
+      <option disabled="disabled" selected="selected">Category</option>
       <option value="Music">Music</option>
       <option value="Visual Arts">Visual Arts</option>
       <option value="Performing Arts">Performing Arts</option>
@@ -48,6 +46,7 @@
       <option value="Nightlife">Nightlife</option>
       <option value="Kids and Family">Kids and Family</option>
       <option value="Other">Other</option>
+      
   </select>
     
   <input type="text" placeholder="Tag" id="Tag" name="Tag" class="input"/>
@@ -134,7 +133,6 @@
         <div class = "col s12">
             <form action="/api/userdislikes/{{this.liketitle}}" method="POST">
             <div class="row">
-                <div class="col s2"></div>
                 <div class="col s2 title">
                     <h5>Title:</h5>
                     <h6 id="likeTitle" name="likeTitle">{{this.liketitle}}</h6>
@@ -186,6 +184,52 @@
 {{!-- Footer Container --}}
 <footer>
 </footer>
+
+{{!-- <script src="/js/pswdval.js"></script> Linked to landing.js for toogle scripting. --}}
+<script src="/js/landing.js"></script>
+
+
+{{!-- <script src="/js/pswdval.js"></script> --}}
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script>
+  (function ($) {
+    $(function () {
+
+        //initialize all modals           
+        $('.modal').modal();
+
+        //now you can open modal from code
+        $('#modal1').modal('open');
+
+        //or by click on trigger
+        $('.trigger-modal').modal();
+
+    }); // end of document ready
+})(jQuery); // end of jQuery name space
+
+//Get the select form ready. 
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+     
+//Date picker get ready. 
+ $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#logout').on('click', function(e){
+            if(confirm("Are you sure you want to logout?"))
+                window.location.href = "http://localhost/login.php";
+
+            return false;
+        });
+    });
+</script>
 
 
 

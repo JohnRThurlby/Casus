@@ -54,9 +54,7 @@ unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX
   parseString(result.body, function (err, results) {
     let eventful = results.search.events[0].event;
     objectEv.events = objectEv.event.concat(eventful);
-    //console.log(objectEv.event.concat(eventful))
-    // console.log(objectEv.events.length);
-    
+      
     for (var i = 0; i < objectEv.events.length; i++) {
       var mediumImg = objectEv.events[i].image[0].medium;
       if (mediumImg!=undefined) {
@@ -129,8 +127,7 @@ module.exports = function(app) {
     }).then(function(data) {
       // We have access to the users events as an argument inside of the callback function
       var hbsObject = { events: data}
-      console.log (hbsObject)
-      
+          
       res.render('event', hbsObject)
     })
   })
@@ -307,7 +304,7 @@ module.exports = function(app) {
           console.log(tweet);  // Tweet body.
           // console.log(response);  // Raw response object.
         })}      
-      res.render("index", objectEv)
+        res.redirect("/api/useraevents")
     })
   })
 
@@ -325,7 +322,7 @@ module.exports = function(app) {
       likeUserid: storeUserid     
     }).then(function(dbUserlikes) {
       // We have access to the new user event as an argument inside of the callback function
-      res.render("index", objectEv)
+      res.redirect("/api/useralikes")
     })
   })
 
