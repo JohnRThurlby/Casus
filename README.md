@@ -3,8 +3,11 @@
 Casus is a tool that helps people find personalized events and activities in their area. From sporting events to concerts and even private events,
 Casus connects you to relevant events, streamlined and customized in a seamless experience. Connect with Casus.
 
+Check it out at:
+
 <h3><a href="https://radiant-eyrie-36675.herokuapp.com/">Visit Casus</a></h3>
 
+Use userid = "Guest@gmail.com", password = "Guest01!"
 
 <h3>Group Members</h3>
 
@@ -19,6 +22,18 @@ Anibal Pacheco:     HTML, CSS
 John Thurlby:       MySQL, Sequelize, MVC
 <br>
 
+<h2>Screenshots</h2>
+
+<h4>Landing page:</h4>
+![screenshot 22](https://user-images.githubusercontent.com/33644735/41922858-0f5c3298-7934-11e8-8b29-50e2cd2563fc.png)
+<h4>Event Feed page:</h4>
+![screenshot 23](https://user-images.githubusercontent.com/33644735/41922876-15d26e80-7934-11e8-9bd1-fb3b8c172d30.png)
+<h4>User Like page:</h4>
+![screenshot 24](https://user-images.githubusercontent.com/33644735/41922885-198fdab2-7934-11e8-8c2b-5383fc8027a9.png)
+<h4>User Event page:</h4>
+![screenshot 25](https://user-images.githubusercontent.com/33644735/41922895-1d0a28fa-7934-11e8-86b5-3a0d1bd53bfd.png)
+<h4>Create an Event page:</h4>
+![screenshot 26](https://user-images.githubusercontent.com/33644735/41922904-2145c1ea-7934-11e8-92f8-1aa176116573.png)
 
 <h3>Process</h3>
 
