@@ -112,7 +112,6 @@ module.exports = function(app) {
         
         error = 'Invalid userid/password combination'
         var hbsObject = {error}
-        
         res.render('index', hbsObject)
       }
       
@@ -121,7 +120,7 @@ module.exports = function(app) {
   })
 
   // GET route for getting a specific users events
-  app.get("/api/userevents", function(req, res) {
+  app.get("/api/useraevents", function(req, res) {
     // findAll returns all entries from the userevents table for a specific user
     db.Userevents.findAll({
       where: {
@@ -137,7 +136,7 @@ module.exports = function(app) {
   })
 
   // GET route for getting a specific users likes
-  app.get("/api/userlikes", function(req, res) {
+  app.get("/api/useralikes", function(req, res) {
     // findAll returns all entries from the userlikes table for a specific user
     db.Userlikes.findAll({
       where: {
@@ -146,8 +145,6 @@ module.exports = function(app) {
     }).then(function(data) {
       // We have access to the users likes as an argument inside of the callback function
       var hbsObject = { events: data}
-      console.log (hbsObject)
-      
       res.render('likes', hbsObject)
     })
   })
@@ -197,14 +194,11 @@ module.exports = function(app) {
 
     var passwordData = validPass.checkPassword(req.body.Password);
     if (!passwordData.isValid) {
-      console.log(passwordData.isValid) // false
-      console.log(passwordData.validationMessage)
       error = passwordData.validationMessage
       userValid = false
     }
 
     if (!validator.validate(req.body.Email)) {
-      console.log('invalid email')
       error = 'Invalid email, please enter a correcty formatted email'
       userValid = false
        
@@ -212,7 +206,6 @@ module.exports = function(app) {
     
     // added so user must enter a valid zip, call to zippopotam
     if (!postcode.validate(req.body.Zipcode, 'US')) {
-          console.log('invalid zip')
           error = 'Zip Code is invalid'
           userValid = false 
     }
@@ -264,7 +257,6 @@ module.exports = function(app) {
     else {
       
       var hbsObject = {error}
-      console.log(hbsObject)
       res.render('index', hbsObject)
     }  
   })
@@ -321,7 +313,7 @@ module.exports = function(app) {
 
   // POST route for saving a new user like
   app.post("/api/userlikes", function(req, res) {
-    console.log(storeUserid)
+    
     // create takes an argument of an object describing the user like 
     db.Userlikes.create({
       liketitle: req.body.likeTitle,
@@ -337,14 +329,27 @@ module.exports = function(app) {
     })
   })
 
+  // Remove a liked event
   app.post("/api/userdislikes/:title", function(req, res) {
     // create takes an argument of an object describing the user like 
     db.Userlikes.destroy({
         where: { liketitle: req.params.title }
             
     }).then(function(dbUserlikes) {
+     // We have access to the new user like as an argument inside of the callback function
+     res.redirect("/api/useralikes")
+    })
+  })
+
+  // Remove a user created event
+  app.post("/api/removeevent/:title", function(req, res) {
+    // create takes an argument of an object describing the user event 
+    db.Userevents.destroy({
+        where: { eventtitle: req.params.title }
+            
+    }).then(function(dbUserevents) {
      // We have access to the new user event as an argument inside of the callback function
-     res.render("index", objectEv)
+     res.redirect("/api/useraevents")
     })
   })
 }

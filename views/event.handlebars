@@ -108,8 +108,8 @@
         <a href="https://radiant-eyrie-36675.herokuapp.com/" id="logo-container" class="brand-logo"> <img src="/images/CASUS.png" alt="Logo" class="logoPic"> </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="blue lighten-4"><a class="modal-trigger" href="/api/feed">Feed</a></li>
-        <li class="blue lighten-4"><a class="modal-trigger" href="/api/userlikes">User Likes</a></li>
-        <li class="blue lighten-4"><a class="modal-trigger" href="/api/userevents">User Events</a></li>
+        <li class="blue lighten-4"><a class="modal-trigger" href="/api/useralikes">User Likes</a></li>
+        <li class="blue lighten-4"><a class="modal-trigger" href="/api/useraevents">User Events</a></li>
         <li class="blue lighten-4"><a class="modal-trigger" href="#modal2">Create Event</a></li>
         <li class="logout blue lighten-4"><a href="/api/logout">Logout</a></li>
       </ul>
@@ -132,82 +132,92 @@
   {{#each events}}
    <div class="row feedcont">
         <div class ="col s12">
-            <div class="row">
-                <div class="col s2 title">
-                    <h5>Event Title:</h5>
-                    <h6 id="eventTitle" name="eventTitle">{{this.eventtitle}}</h6>
+            <form action="/api/removeevent/{{this.eventtitle}}" method="POST">
+                <div class="row">
+                    <div class="col s2 title">
+                        <h5>Event Title:</h5>
+                        <h6 id="eventTitle" name="eventTitle">{{this.eventtitle}}</h6>
+                    </div>
+                    <div class="col s2"></div>
+                    <div class="col s6 descCol" >
+                        <h5>Event Description:</h5>
+                        <div id = "desccont">
+                            <h6 id="eventDescription" name="eventDescription">{{this.eventdesc}}</h6>
+                        </div>
+                    </div>
+                    <div class="col s2"></div>
                 </div>
-                <div class="col s2"></div>
-                <div class="col s6 descCol" >
-                    <h5>Event Description:</h5>
-                    <div id = "desccont">
-                        <h6 id="eventDescription" name="eventDescription">{{this.eventdesc}}</h6>
+                <div class="row">
+                    <div class="locCont">
+                        <div class="col s2"></div>
+                        <div class="col s2">
+                            <h5>Event Start Date:</h5>
+                            <h6 id"eventStartdate" name="eventStartdate">{{this.eventstartdate}}</h6>
+                        </div>
+                        <div class="col s2"></div>
+                        <div class="col s2">
+                            <h5>Event End Date:</h5>
+                            <h6 id="eventEnddate" name="eventEnddate">{{this.eventenddate}}</h6>
+                        </div>
+                        <div class="col s2"></div>
+                    </div>
+                </div> <!-- end row -->
+                <div class="row">
+                    <div class="locCont">
+                        <div class="col s3"> 
+                            <h5>Event Location:</h5>  
+                            <h6 id="eventLocation" name="eventLocation"> {{this.eventlocation}}</h6>
+                        </div>
+                        <div class="col s7"></div>
+                    </div>
+                </div> <!-- end row -->
+                <div class="row"> 
+                    <div class="col s2"></div> 
+                    <div class="locCont">
+                        <div class="col s2 ">
+                            <h5>Event Type:</h5>  
+                            {{#if this.eventpublic}}
+                                <h6 id="eventType" name="eventType">Public</h6>
+                            {{/if}}
+                            {{#if this.eventprivate}}
+                                <h6 id="eventType" name="eventType">Private</h6>
+                            {{/if}}
+                        </div>
+                        <div class="col s2">
+                            <h5>Capacity:</h5>
+                            <h6 name="eventCapacity" id="eventCapacity">{{this.eventcapacity}}</h6>
+                        </div>
+                        <div class="col s2">
+                            <h5>Category</h5>
+                            <h6 name="eventCategory" id="eventCategory">{{this.eventcategory}}</h6>
+                        </div>
+                        <div class="col s2">
+                            <h5>Tag:</h5>
+                            <h6 name="eventTag" id="eventTag">{{eventTag}}</h6>
+                        </div>
+                        <div class="col s2"></div>
+                    </div>
+                </div> <!-- end row-->
+                <div class="row">
+                    <div class = "col s2"></div>
+                    <div class = "col s6">
+                        <div class="googleMap">
+                            <a href="//maps.google.com/?q={{this.eventlocation}}" target="_blank" data-ga-label="Full Map Link" itemprop="map">
+                            <img src="//maps.googleapis.com/maps/api/staticmap?zoom=13&amp;size=314x300&amp;maptype=roadmap&amp;markers=color:red%7Ccolor:red%7C{{this.eventlocation}}&amp;key=AIzaSyBZyI2NwL198_2YM1ZBlZ3FdDb6JcOnUPI&amp;sensor=false" alt="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}">
+                            <p>Full Map and Directions</p></a>
+                        </div>
+                    </div>
+                    <div class = "col s4"></div>
+                </div> <!-- end row-->
+                <div class = "row">
+                <div class = "col s5"></div>
+                <div class = "col s2">
+                    <div class = "remove">
+                        <button class="btn waves-effect waves-light" type="submit">Delete Event</button>
                     </div>
                 </div>
-                <div class="col s2"></div>
             </div>
-            <div class="row">
-                <div class="locCont">
-                    <div class="col s2"></div>
-                    <div class="col s2">
-                        <h5>Event Start Date:</h5>
-                        <h6 id"eventStartdate" name="eventStartdate">{{this.eventstartdate}}</h6>
-                    </div>
-                    <div class="col s2"></div>
-                    <div class="col s2">
-                        <h5>Event End Date:</h5>
-                        <h6 id="eventEnddate" name="eventEnddate">{{this.eventenddate}}</h6>
-                    </div>
-                    <div class="col s2"></div>
-                </div>
-            </div> <!-- end row -->
-            <div class="row">
-                <div class="locCont">
-                    <div class="col s3"> 
-                        <h5>Event Location:</h5>  
-                        <h6 id="eventLocation" name="eventLocation"> {{this.eventlocation}}</h6>
-                    </div>
-                    <div class="col s7"></div>
-                </div>
-            </div> <!-- end row -->
-            <div class="row"> 
-                <div class="col s2"></div> 
-                <div class="locCont">
-                    <div class="col s2 ">
-                        <h5>Event Type:</h5>  
-                        {{#if this.eventpublic}}
-                            <h6 id="eventType" name="eventType">Public</h6>
-                        {{/if}}
-                        {{#if this.eventprivate}}
-                            <h6 id="eventType" name="eventType">Private</h6>
-                        {{/if}}
-                    </div>
-                    <div class="col s2">
-                        <h5>Capacity:</h5>
-                        <h6 name="eventCapacity" id="eventCapacity">{{this.eventcapacity}}</h6>
-                    </div>
-                    <div class="col s2">
-                        <h5>Category</h5>
-                        <h6 name="eventCategory" id="eventCategory">{{this.eventcategory}}</h6>
-                    </div>
-                    <div class="col s2">
-                        <h5>Tag:</h5>
-                        <h6 name="eventTag" id="eventTag">{{eventTag}}</h6>
-                    </div>
-                    <div class="col s2"></div>
-                </div>
-            </div> <!-- end row-->
-            <div class="row">
-                <div class = "col s2"></div>
-                <div class = "col s6">
-                    <div class="googleMap">
-                        <a href="//maps.google.com/?q={{this.eventlocation}}" target="_blank" data-ga-label="Full Map Link" itemprop="map">
-                        <img src="//maps.googleapis.com/maps/api/staticmap?zoom=13&amp;size=314x300&amp;maptype=roadmap&amp;markers=color:red%7Ccolor:red%7C{{this.eventlocation}}&amp;key=AIzaSyBZyI2NwL198_2YM1ZBlZ3FdDb6JcOnUPI&amp;sensor=false" alt="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}">
-                        <p>Full Map and Directions</p></a>
-                    </div>
-                </div>
-                <div class = "col s4"></div>
-            </div> <!-- end row-->
+            </form>
         </div>
     </div> <!-- end class = feedcont -->
     <br>
