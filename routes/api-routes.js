@@ -45,7 +45,7 @@ var eventObj = {
 };
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
-unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&q=music&location=orlando&include=tickets")
+unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=orlando")
 .header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
 .header("Accept", "text/plain")
 .end(function (result) {
