@@ -24,19 +24,14 @@ John Thurlby:       MySQL, Sequelize, MVC
 
 <h2>Screenshots</h2>
 
-<h4>Landing page:</h4>
 ![screenshot 22](https://user-images.githubusercontent.com/33644735/41923244-f50291de-7934-11e8-8e53-20a08f3aea44.png)
 
-<h4>Event Feed page:</h4>
 ![screenshot 23](https://user-images.githubusercontent.com/33644735/41923281-0a6d5504-7935-11e8-9ea0-ad883954e2c2.png)
 
-<h4>User Like page:</h4>
 ![screenshot 24](https://user-images.githubusercontent.com/33644735/41923314-1eedabb4-7935-11e8-8775-f2d014d52932.png)
 
-<h4>User Event page:</h4>
 ![screenshot 25](https://user-images.githubusercontent.com/33644735/41923333-2de24b48-7935-11e8-96bd-2e4bbd25bf3c.png)
 
-<h4>Create an Event page:</h4>
 ![screenshot 26](https://user-images.githubusercontent.com/33644735/41923356-39b549a2-7935-11e8-8b90-ec7cc57d541a.png)
 
 
