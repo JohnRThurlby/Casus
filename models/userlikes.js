@@ -27,6 +27,9 @@ module.exports =  function (sequelize, DataTypes) {
     likeUserid: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    UserId: {
+      type: DataTypes.STRING
     }
   })
   
