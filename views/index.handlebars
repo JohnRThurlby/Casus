@@ -13,57 +13,15 @@
 
 
     <label for="toggle--signup" class="text text--omega text--centered">New?
-        <b>Sign up</b>
+        <b><a class="modal-trigger" href="#modal1">Sign Up</a></b>
     </label>
-    <label class="text text--small text--centered">
+    <label class="text text--omega text--centered">
        <b>{{error}}</b>
    </label>
 </form>
 
 
-<form class="form form--signup framed" action="/api/users" method="POST">
-   <h2 class="text text--centered text--omega">Casus connects you to relevant events
-       <b>streamlined and customized </b> in a seamless experience.</br>Connect with Casus</h2>
 
-   <input type="email" placeholder="Email" id="Email" name="Email" class="input input--top" required />
- 
-   <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
-  
-   <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
-   <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
-   <select required name="userCategory" >
-     
-      <option disabled="disabled" selected="selected">Category</option>
-      <option value="Music">Music</option>
-      <option value="Visual Arts">Visual Arts</option>
-      <option value="Performing Arts">Performing Arts</option>
-      <option value="Film">Film</option>
-      <option value="Lectures & Books">Lectures and Books</option>
-      <option value="Fashion">Fashion</option>
-      <option value="Food & Drink">Food and Drink</option>
-      <option value="Festivals and Fairs">Festivals and Fairs</option>
-      <option value="Charities">Charities</option>
-      <option value="Sports and Active Life">Sports and Active Life</option>
-      <option value="Nightlife">Nightlife</option>
-      <option value="Kids and Family">Kids and Family</option>
-      <option value="Other">Other</option>
-      
-  </select>
-    
-  <input type="text" placeholder="Tag" id="Tag" name="Tag" class="input"/>
-   
-   
-
-   <input type="submit" value="Sign up" class="input input--submit" />
-
-   <label for="toggle--login" class="text text--centered text--omega">Not new?
-       <b>Log in</b>
-   </label>
-   <label class="text text--small text--centered">
-       <b>{{error}}</b>
-   </label>
-
-</form>
 
 <div class="legal">
     <a class="text text--small text--border-right" href="javascript:;">Terms</a>
@@ -209,9 +167,49 @@
   </div> 
 </div>
 
-
+{{!-- Container for the Sign Up form. --}}
+<div id="modal1" class="signup modal" startingTop="10%" dismissible>
+  <div class="modal-content">
+    <h4>Sign Up</h4>
+    <form action="/api/users" method="POST">
+      <h5 class="text--centered">Casus connects you to relevant events
+      <b>streamlined and customized</b> in a seamless experience.</br>Connect with Casus</h5>
+      <input type="email" placeholder="Email" id="Email" name="Email" class="input input--top" required />
+      <br>
+      <input type="password" placeholder="Password" id="Password" name="Password" class="input" required />
+      <br>  
+      <input type="text" placeholder="Zipcode" id="Zipcode" name="Zipcode" class="input" required />
+      <br>
+      <input type="text" placeholder="Twitter" id="Twitter" name="Twitter" class="input"/>
+      <br>
+      <select required name="userCategory" >
+        <option disabled="disabled" selected="selected">Category</option>
+        <option value="Music">Music</option>
+        <option value="Visual Arts">Visual Arts</option>
+        <option value="Performing Arts">Performing Arts</option>
+        <option value="Film">Film</option>
+        <option value="Lectures & Books">Lectures and Books</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Food & Drink">Food and Drink</option>
+        <option value="Festivals and Fairs">Festivals and Fairs</option>
+        <option value="Charities">Charities</option>
+        <option value="Sports and Active Life">Sports and Active Life</option>
+        <option value="Nightlife">Nightlife</option>
+        <option value="Kids and Family">Kids and Family</option>
+        <option value="Other">Other</option>
+      </select>
+      <br>  
+      <input type="text" placeholder="Tag" id="Tag" name="Tag" class="input"/>
+      <br> 
+      <input type="submit" value="Sign up" class="input input--submit" />
+      <br>
+      <label class="text text--omega text--centered">
+        <b>{{error}}</b>
+      </label>
+    </form>
+  </div> 
 </div>
-
+</div>
 
 {{!-- Footer Container --}}
 <footer>
@@ -234,7 +232,7 @@
         $('.modal').modal();
 
         //now you can open modal from code
-        $('#modal1').modal('open');
+        //$('#modal1').modal('open');
 
         //or by click on trigger
         $('.trigger-modal').modal();
