@@ -79,7 +79,7 @@ module.exports = function(app) {
 
   // GET route for landing page 
   app.get("/api/feed", function(req, res) {
-    res.render("index", objectEv)
+    res.render("feed", objectEv)
   })
 
   app.get("/api/logout", function(req, res) {
@@ -103,7 +103,7 @@ module.exports = function(app) {
       // We have access to the users as an argument inside of the callback function
            storeUserid = dbUsers.userid
            store.set(storeUserid)
-           res.render("index", objectEv)
+           res.render("feed", objectEv)
 
       }
       else {
@@ -254,7 +254,7 @@ module.exports = function(app) {
     else {
       
       var hbsObject = {error}
-      res.render('index', hbsObject)
+      res.render('feed', hbsObject)
     }  
   })
 

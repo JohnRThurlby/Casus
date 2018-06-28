@@ -1,6 +1,6 @@
-{{!-- User Likes Page --}}
+{{!-- Feed Page --}}
 
-
+{{!-- NEW Updated Header-Amani --}}
 <header>
  <nav>
     <div class="nav-wrapper  blue lighten-4">
@@ -16,64 +16,18 @@
   </nav>
 </header>
 
-
 {{!-- Social media login page. "action = '/action_page.php' removed." --}}
 <div class="mainContainer">
 
-<a id="likedevents"></a>
-<div id ="event">
-    <h4>Liked Events</h4>
-    {{#each events}}
-    <div class="row feedcont">
-        <div class = "col s12">
-            <form action="/api/userdislikes/{{this.liketitle}}" method="POST">
-            <div class="row">
-                <div class="col s2 title">
-                    <h5>Title:</h5>
-                    <h6 id="likeTitle" name="likeTitle">{{this.liketitle}}</h6>
-                </div>
-                <div class="col s2"></div>
-                <div class="col s6 descCol">
-                    <h5>Description:</h5>
-                    <div id = "desccont">
-                        <h6 id="likeDescription" name="likeDescription">{{this.likedesc}}</h6>
-                     </div>
-                    <h5>Start Date:</h5>
-                    <h6 id="likeStartdate" name="likeStartdate">{{this.likestartdate}}</h6>
-                    <h5>End Date:</h5>
-                    <h6 id="likeEnddate" name="likeEnddate">{{this.likeenddate}}</h6>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s2"></div>
-                <div class="col s2 locCont">   
-                    <h5>Location:</h5>
-                    <h6 id="likeLocation" name="likeLocation"> {{this.likelocation}}</h6>
-                </div>
-                <div class = "col s2"></div>
-                <div class = "col s6">
-                    <div class="googleMap">
-                        <a href="//maps.google.com/?q={{this.likelocation}}" target="_blank" data-ga-label="Full Map Link" itemprop="map">
-                        <img src="//maps.googleapis.com/maps/api/staticmap?zoom=13&amp;size=314x300&amp;maptype=roadmap&amp;markers=color:red%7Ccolor:red%7C{{this.likelocation}}&amp;key=AIzaSyBZyI2NwL198_2YM1ZBlZ3FdDb6JcOnUPI&amp;sensor=false" alt="{{venue_address}} {{city_name}} {{region_abbr}} {{postal_code}}">
-                        <p>Full Map and Directions</p></a>
-                    </div>
-                </div>
-            </div> <!-- end row-->
-            <div class = "row">
-                <div class = "col s5"></div>
-                <div class = "col s2">
-                    <div class = "remove">
-                        <button class="btn waves-effect waves-light" type="submit">Remove Liked Event</button>
-                    </div>
-                </div>
-            </div>
-            </form>
-        </div>
-        <br>
-    </div>
-    <br>
-    {{/each}}
+<div id = "feed">
+  <h4>Events</h4>
+  {{#each events}}
+        {{> feeds/feeds}}
+  {{/each}}
 </div>
+
+
+
 
 <div class="legal">
     <a class="text text--small text--border-right" href="javascript:;">Terms</a>
@@ -85,6 +39,10 @@
         <b>CASUS</b>
     </a>
 </div>
+
+{{!-- Footer Container --}}
+<footer>
+</footer>
 
 {{!-- Container for the Create Events form. --}}
 <div id="modal2" class="createEvent modal" startingTop="10%" dismissible>
@@ -159,10 +117,9 @@
     
   </div> 
 </div>
-{{!-- Footer Container --}}
-<footer>
-</footer>
 
+{{!-- <script src="/js/pswdval.js"></script> --}}
+<!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 <script>
   (function ($) {
@@ -191,5 +148,6 @@ $(document).ready(function(){
   });
 
 </script>
+
 
 
