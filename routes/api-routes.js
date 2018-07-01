@@ -32,41 +32,16 @@ const db = require("../models"),
 var inUserid =  " "
 var storeUserid =  " "
 
+var userZip =  " "
+var userCat =  " "
+
 var objectEv = {
   event:
   [
     ]
 };
 
-var eventObj = {
-  event:
-  [
-    ]
-};
-
-// These code snippets use an open-source library. http://unirest.io/nodejs
-unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=orlando")
-.header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")
-.header("Accept", "text/plain")
-.end(function (result) {
-  // console.log(result.status, result.headers, result.body);
-  var parseString = require('xml2js').parseString;
-  parseString(result.body, function (err, results) {
-    let eventful = results.search.events[0].event;
-    objectEv.events = objectEv.event.concat(eventful);
-      
-    for (var i = 0; i < objectEv.events.length; i++) {
-      var mediumImg = objectEv.events[i].image[0].medium;
-      if (mediumImg!=undefined) {
-        // console.log (mediumImg[0]);
-      }
-      else {
-        //console.log(mediumImg)
-      }
-    
-    }
-  });
-});
+db.Userevents.hasMany(db.Usertags)
 
 // Routes
 // =============================================================
@@ -77,16 +52,37 @@ module.exports = function(app) {
         res.render("index")
   })
 
+  app.get("/api/logout", function(req, res) {
+    res.render("index")
+ })
+
   // GET route for landing page 
   app.get("/api/feed", function(req, res) {
-    res.render("feed", objectEv)
+    var queryCall = "https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=" + userZip 
+    
+    //unirest.get("https://community-eventful.p.mashape.com/events/search?app_key=kZVX6GMpxCX83vh9&location=32835")
+    unirest.get(queryCall)
+    .header("X-Mashape-Key", "35ZWjjUvuxmshz4RIV2HACPs4csep18CfcAjsnas8mTje72Nko")   
+    .header("Accept", "text/plain")
+    .end(function (result) {
+      // console.log(result.status, result.headers, result.body);
+      var parseString = require('xml2js').parseString;
+      parseString(result.body, function (err, results) {
+        let eventful = results.search.events[0].event;
+        objectEv.events = objectEv.event.concat(eventful);
+          
+        for (var i = 0; i < objectEv.events.length; i++) {
+          var mediumImg = objectEv.events[i].image[0].medium;
+          if (mediumImg!=undefined) {
+          } // end if
+          else {
+          }   // end else
+        }   // end for
+      }) // end parse String
+      res.render("feed", objectEv)
+    }) // end unirest 
+   // getFeed (function() {res.render("feed", objectEv)})
   })
-
-  app.get("/api/logout", function(req, res) {
-  
-  res.render("index")
-
-})
   
   // GET route for getting a specific users
   app.get("/api/users/", function(req, res) {
@@ -101,20 +97,18 @@ module.exports = function(app) {
       if (dbUsers != null) {
         
       // We have access to the users as an argument inside of the callback function
-           storeUserid = dbUsers.userid
-           store.set(storeUserid)
-           res.render("feed", objectEv)
-
+          storeUserid = dbUsers.userid
+          userZip = dbUsers.zipcode 
+          console.log(userZip)
+          store.set(storeUserid)
+          res.redirect('/api/feed')
       }
       else {
-        
         error = 'Invalid userid/password combination'
         var hbsObject = {error}
         res.render('index', hbsObject)
       }
-      
     })
-    
   })
 
   // GET route for getting a specific users events
@@ -162,7 +156,7 @@ module.exports = function(app) {
   // GET route for getting a specific category
   app.get("/api/categories/:id", function(req, res) {
     // findOne returns the entry from the category table based on id 
-    db.Categories.findOne({  
+    db.Usercategories.findOne({  
     where: {
         id: req.params.id
       }
@@ -175,7 +169,7 @@ module.exports = function(app) {
   // GET route for getting all category
   app.get("/api/categories", function(req, res) {
     // findAll returns all the entries from the category table 
-    db.Categories.findAll({}).then(function(dbCategories) {
+    db.Usercategories.findAll({}).then(function(dbCategories) {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbCategories)
     })  
@@ -248,13 +242,15 @@ module.exports = function(app) {
           userCategory: req.body.userCategory
         }).then(function(dbUsercategories) {})
         
-        res.render("index", objectEv)
+        userCat = req.body.userCategory
+        userZip = req.body.Zipcode
+        res.redirect('/api/feed')
       })
     }
     else {
       
       var hbsObject = {error}
-      res.render('feed', hbsObject)
+      res.render('index', hbsObject)
     }  
   })
 
@@ -288,23 +284,36 @@ module.exports = function(app) {
       eventUserid: storeUserid      
     }).then(function(dbUserevents) {      
       // We have access to the new user event as an argument inside of the callback function
-     if (req.body.eventTag != ""){
-      db.Usertags.create({
+     
+    if (req.body.eventTag1 != ""){
+        db.Usertags.create({
         userid: storeUserid,
-        usertag: req.body.eventTag,
+        usertag: req.body.eventTag1,
         eventtag: req.body.eventTitle
-      }).then(function(dbUsertags) {})}
+    }).then(function(dbUsertags) {})}
+    if (req.body.eventTag2 != ""){
+      db.Usertags.create({
+      userid: storeUserid,
+      usertag: req.body.eventTag2,
+      eventtag: req.body.eventTitle
+    }).then(function(dbUsertags) {})}
+    if (req.body.eventTag3 != ""){
+      db.Usertags.create({
+      userid: storeUserid,
+      usertag: req.body.eventTag3,
+      eventtag: req.body.eventTitle
+    }).then(function(dbUsertags) {})}
+    
         // We have access to the new user tag as an argument inside of the callback function
-        if (req.body.eventTwitter != "" && eventPub){
-        var tweetMsg = req.body.eventTitle + " on " + req.body.eventStartdate + ". First "  + req.body.eventCapacity + " responses will be sent location and further details" 
-        client.post('statuses/update', {status: tweetMsg},  function(error, tweet, response){
-          if(error){
-            console.log(error);
-          }
-          console.log(tweet);  // Tweet body.
-          // console.log(response);  // Raw response object.
-        })}      
-        res.redirect("/api/useraevents")
+      if (req.body.eventTwitter != "" && eventPub){
+      var tweetMsg = req.body.eventTitle + " on " + req.body.eventStartdate + ". First "  + req.body.eventCapacity + " responses will be sent location and further details" 
+      client.post('statuses/update', {status: tweetMsg},  function(error, tweet, response){
+        if(error){
+          console.log(error);
+        }
+        console.log(tweet);  // Tweet body.
+     })}      
+      res.redirect("/api/useraevents")
     })
   })
 
@@ -330,7 +339,9 @@ module.exports = function(app) {
   app.post("/api/userdislikes/:title", function(req, res) {
     // create takes an argument of an object describing the user like 
     db.Userlikes.destroy({
-        where: { liketitle: req.params.title }
+        where: { 
+          likeUserid: storeUserid,
+          liketitle: req.params.title }
             
     }).then(function(dbUserlikes) {
      // We have access to the new user like as an argument inside of the callback function
@@ -341,12 +352,22 @@ module.exports = function(app) {
   // Remove a user created event
   app.post("/api/removeevent/:title", function(req, res) {
     // create takes an argument of an object describing the user event 
+    db.Usertags.destroy({
+      where: { 
+        userid: storeUserid,
+        eventtag:  req.params.title }
+          
+  }).then(function(dbUserevents) {})
+
     db.Userevents.destroy({
-        where: { eventtitle: req.params.title }
+        where: { 
+          eventuserid: storeUserid,
+          eventtitle: req.params.title }
             
     }).then(function(dbUserevents) {
      // We have access to the new user event as an argument inside of the callback function
      res.redirect("/api/useraevents")
     })
   })
+  
 }

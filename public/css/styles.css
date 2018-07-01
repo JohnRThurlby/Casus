@@ -41,21 +41,10 @@ input[type=submit]:hover {
   background-color: #45a049;
 } 
 
-
-
-
-
-
-
 /* hide some text on medium and large screens */
 .hide-md-lg {
   display: none;
 } 
-
-
-
-
-
 
 /* Style the container for inputs */
 .container {
@@ -108,8 +97,6 @@ input[type=submit]:hover {
   }
 }
 
-
-
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {
   .col {
@@ -153,8 +140,6 @@ input[type=submit]:hover {
   z-index: -3;
   opacity: 0;
 }
-
-
 
 .second-image {
   background-image: url('../images/CasusFood.jpeg');
@@ -249,7 +234,6 @@ html, body {
     margin-bottom: 1rem!important;
   }
 
-
 .text {
   color: #fff!important;
   text-shadow: 0 1px 1px rgba(0,0,0,0.8)!important;
@@ -290,35 +274,10 @@ html, body {
   right: 1.125rem; bottom: 1.125rem;
 }
 
-/* .form--login {
-  background-color: rgba(255,255,255,0.8);
-} */
-/* ::placeholder { 
-  color: grey;
-  opacity: 1; 
-}
-
-:-ms-input-placeholder { 
-  color: grey;
-}
-
-::-ms-input-placeholder { 
-  color: grey;
-} */
-
-/* .fullscreen-bg {
-  position: fixed;
-  z-index: -1;
-  top:0; right:0; bottom:0; left:0;
-  background: url(https://images.pexels.com/photos/196652/pexels-photo-196652.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940g) center;
-  background-size: cover; */
-/* } */
-
 #toggle--login:checked ~ .form--signup { left:200%; visibility:hidden; }
 #toggle--signup:checked ~ .form--login { left:-100%; visibility:hidden; }
 
 @media (height:300px){.legal,.photo-cred{display:none}}
-
 
 /* Styles for event container */
 
@@ -335,14 +294,6 @@ html, body {
   width: 25%;
   height: auto;
 }
-
-/* 
-.filler {
-  z-index: 1000;
-  height: 900px;
-  width: 100%;
-  float: left;
-} */
 
 #containerTest {
   padding-top: 800px;
@@ -387,7 +338,7 @@ div {
   }
 
   .modal { 
-    width: 50% !important ; 
+    width: 55% !important ; 
     left: 10%;
   } 
 

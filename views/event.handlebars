@@ -72,8 +72,18 @@
                     </div>
                     <div class="col s2"></div>                        
                     <div class="col s2 locCont">     
-                        <h5>Tag:</h5>
-                        <h6 name="eventTag" id="eventTag">{{eventTag}}</h6>
+                        <h5>Tags:</h5>
+                        <div id="intags">
+                            <label for="eventTag1">Tag #1:</label>
+                            <h6 name="eventTag" id="eventTag1">{{eventTag1}}</h6>
+                    
+                            <label for="eventTag2">Tag #2:</label>
+                            <h6 name="eventTag" id="eventTag2">{{eventTag2}}</h6>
+
+                            <label for="eventTag3">Tag #3:</label>
+                            <h6 name="eventTag" id="eventTag3">{{eventTag3}}</h6>  
+                        </div>
+                        <!--h6 name="eventTag" id="eventTag1">{{eventTag1}}</h6-->
                     </div>
                     <div class="col s1"></div>
                 </div> <!-- end row -->
@@ -180,7 +190,16 @@
     <br>
     {{!-- Tags for the event --}}
     <h5>Tag:</h5>
-    <input placeholder="Tags" id="tags" type="text" name="eventTag" class="validate"></input>
+     <div id="intags">
+        <label for="eventTag1">Tag #1:</label>
+        <input name="eventTag1" id="eventTag1" type="text" />
+   
+        <label for="eventTag2">Tag #2:</label>
+        <input name="eventTag2" id="eventTag2" type="text" />
+
+        <label for="eventTag3">Tag #3:</label>
+        <input name="eventTag3" id="eventTag3" type="text" />  
+    </div>
     <br>
     <h5>If you would like to tweet your event, enter your Twitter id:</h5>
     <input placeholder="Twitterid" id="twitterid" type="text" name="eventTwitter" class="validate"></input>

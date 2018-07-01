@@ -1,10 +1,11 @@
 body {
     background-color: #b9dbf8;
+    background-image: url("../images/CasusFriends.jpeg");
 }
 
 .feedcont {
     width:80%;
-    background-color: #d3eaff;
+    background-color: rgba(0, 247, 255, 0.1);
     border-radius: 8px;
     box-shadow:4px 2px 5px grey;
 }
@@ -28,4 +29,14 @@ body {
 
 .btn {
     box-shadow:4px 2px 5px grey;
+}
+
+#intags input[type='text']{
+    width: 15%;
+    display: inline!important;
+    background: #F9F9F9;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    line-height: 1.4;
+    padding: 6px;
 }

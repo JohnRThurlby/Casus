@@ -9,7 +9,7 @@ $(document).ready(function() {
   
           //  q: query,
   
-          page_size: 10,
+          page_size: 30,
   
           sort_order: "popularity",
   
@@ -20,7 +20,7 @@ $(document).ready(function() {
       EVDB.API.call("/events/search", oArgs, function(oData) {
   
   
-      console.log(oData)
+      // console.log(oData)
             //   var source   = document.getElementById("entry-template").innerHTML;
             //   var template = Handlebars.compile(source);
       });
